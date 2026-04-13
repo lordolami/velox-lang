@@ -27,6 +27,9 @@ This folder is the canonical source of truth for Velox language behavior, compil
 21. `spec/AI_BOOTSTRAP_A_TO_Z.md` - compact onboarding map for AI agents.
 22. `spec/AY_COMPLETION_STATUS.md` - startup readiness A-Y board.
 23. `spec/startup/README.md` - startup execution pack.
+24. `spec/startup/velox-web-runbook.md` - official frontend reliability runbook.
+25. `spec/LLM_CONTEXT_PACK.md` - compact model-facing syntax/convention contract.
+26. `spec/CLAUDE_ZERO_ACCESS_PROMPT.md` - no-repo-access prompt template.
 
 ## AI Ingestion Notes
 

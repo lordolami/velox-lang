@@ -1,11 +1,15 @@
 component ShowcasePage(data) {
   ~summary = data.summary
+  ~appCount = data.appCount
+  ~sourceRoot = data.sourceRoot
 
   render {
     <section>
       <p class="eyebrow">Showcase</p>
       <h1>Apps built with Velox.</h1>
       <p>{summary}</p>
+      <p>Current showcase cards: {appCount}</p>
+      <p>Source root: {sourceRoot}</p>
 
       <div class="grid two">
         <article class="card"><h2>Todo App</h2><p>Reactive state and local interactions.</p></article>

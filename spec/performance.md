@@ -80,7 +80,7 @@ npm run bench:apps:report
 ```
 
 What it does:
-1. Compiles full showcase apps (Todo, Dashboard, Landing) using `velox build`.
+1. Compiles full app suite (Todo, Dashboard, Landing, Core Pages, Velox Web) using `velox build`.
 2. Measures end-to-end build duration per app.
 3. Captures output artifact profile (file counts and bundle size).
 4. Loads generated modules and benchmarks component `render()` throughput.
@@ -112,10 +112,10 @@ Sample output shape:
     }
   ],
   "summary": {
-    "appCount": 3,
-    "avgBuildMs": 41.337,
-    "avgRenderMs": 88.092,
-    "avgRendersPerSecond": 54212.28
+    "appCount": 5,
+    "avgBuildMs": 193.138,
+    "avgRenderMs": 11.007,
+    "avgRendersPerSecond": 1458429.182
   }
 }
 ```

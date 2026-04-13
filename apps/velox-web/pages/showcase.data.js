@@ -1,7 +1,9 @@
 export function load() {
   return {
     data: {
-      summary: "This showcase highlights starter apps and production style examples powered by Velox."
+      summary: "This showcase highlights starter apps and production style examples powered by Velox.",
+      appCount: 4,
+      sourceRoot: "examples/showcase",
     }
   };
 }

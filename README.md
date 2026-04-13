@@ -39,6 +39,7 @@ npm run bench:apps:report
 npm run lsp:gate
 npm run check:deterministic
 npm run verify:quickstart
+npm run check:velox-web
 npm run startup:ready
 npm run release:v1:check
 npm run check:mega60
@@ -78,6 +79,10 @@ Three production-style demo apps live in `examples/showcase`:
 Official Velox site app (Velox-on-Velox) now lives in:
 
 - `apps/velox-web/pages`
+
+Hardening runbook:
+
+- `spec/startup/velox-web-runbook.md`
 
 Build one app:
 

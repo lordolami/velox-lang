@@ -1,8 +1,19 @@
-component DocsIndexPage {
+component DocsIndexPage(data) {
+  ~docsIndexed = data.docsIndexed
+  ~indexPath = data.indexPath
+  ~keyAreas = data.keyAreas
+
   render {
     <section>
       <p class="eyebrow">Docs</p>
       <h1>Everything needed to build with Velox.</h1>
+      <p>Machine indexed docs available: {docsIndexed}</p>
+      <p>Index source: {indexPath}</p>
+      <ul>
+        {#each keyAreas as area}
+          <li>{area}</li>
+        {/each}
+      </ul>
       <div class="grid two">
         <a href="https://github.com/lordolami/velox-lang/blob/main/spec/MASTER_SPEC.md" class="card linkcard" target="_blank">
           <h2>Master Spec</h2>

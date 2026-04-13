@@ -244,10 +244,28 @@
       "kind": "operations"
     },
     {
+      "id": "startup-velox-web-runbook",
+      "title": "Velox Web Runbook",
+      "path": "spec/startup/velox-web-runbook.md",
+      "kind": "operations"
+    },
+    {
       "id": "startup-ssr-ssg-rfc",
       "title": "Velox SSR SSG RFC",
       "path": "spec/startup/ssr-ssg-rfc.md",
       "kind": "roadmap"
+    },
+    {
+      "id": "llm-context-pack",
+      "title": "Velox LLM Context Pack",
+      "path": "spec/LLM_CONTEXT_PACK.md",
+      "kind": "guide"
+    },
+    {
+      "id": "claude-zero-access-prompt",
+      "title": "Claude Zero Access Prompt",
+      "path": "spec/CLAUDE_ZERO_ACCESS_PROMPT.md",
+      "kind": "guide"
     }
   ]
 }

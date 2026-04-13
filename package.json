@@ -30,6 +30,7 @@
     "lsp:gate": "npm run lsp:smoke && npm run lsp:perf",
     "verify:quickstart": "node scripts/verify-quickstart.cjs",
     "check:deterministic": "node scripts/check-deterministic-output.cjs",
+    "check:velox-web": "node scripts/check-velox-web.cjs",
     "startup:ready": "node scripts/check-startup-readiness.cjs",
     "release:v1:check": "node scripts/release-v1-check.cjs",
     "check:mega60": "tsx src/cli.ts check examples/mega60",

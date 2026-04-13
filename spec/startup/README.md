@@ -12,11 +12,11 @@ This folder is the operator pack for shipping a startup on Velox now.
 6. `spec/startup/qa-matrix.md`
 7. `spec/startup/external-beta.md`
 8. `spec/startup/feedback-loop.md`
-9. `spec/startup/ssr-ssg-rfc.md`
+9. `spec/startup/velox-web-runbook.md`
+10. `spec/startup/ssr-ssg-rfc.md`
 
 ## Single Validation Command
 
 ```bash
 npm run startup:ready
 ```
-

@@ -20,6 +20,7 @@ const commandChecks = [
   ["run", "bench:apps:gate"],
   ["run", "check:deterministic"],
   ["run", "verify:quickstart"],
+  ["run", "check:velox-web"],
 ];
 
 const fileChecks = [
@@ -40,6 +41,11 @@ const fileChecks = [
   "spec/startup/qa-matrix.md",
   "spec/startup/external-beta.md",
   "spec/startup/feedback-loop.md",
+  "spec/startup/velox-web-runbook.md",
+  "apps/velox-web/velox.config.json",
+  "apps/velox-web/pages/index.vx",
+  "apps/velox-web/pages/docs/index.vx",
+  "apps/velox-web/pages/benchmarks.vx",
   ".env.example",
 ];
 
@@ -122,7 +128,8 @@ const docsIndexCheck = {
     docsIndexParsed &&
       Array.isArray(docsIndexParsed.documents) &&
       docsIndexParsed.documents.some((doc) => doc.path === "spec/AY_COMPLETION_STATUS.md") &&
-      docsIndexParsed.documents.some((doc) => doc.path === "spec/startup/README.md"),
+      docsIndexParsed.documents.some((doc) => doc.path === "spec/startup/README.md") &&
+      docsIndexParsed.documents.some((doc) => doc.path === "spec/startup/velox-web-runbook.md"),
   ),
 };
 

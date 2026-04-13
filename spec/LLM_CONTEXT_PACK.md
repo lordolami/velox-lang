@@ -108,3 +108,12 @@ When asked to build Velox frontend:
 3. Keep markup simple and deterministic.
 4. Prefer patterns already used in `examples/showcase/*`.
 
+Official frontend reference app:
+
+- `apps/velox-web/pages`
+
+Critical data modules for accuracy:
+
+- `apps/velox-web/pages/index.data.js`
+- `apps/velox-web/pages/benchmarks.data.js`
+- `apps/velox-web/pages/docs/index.data.js`

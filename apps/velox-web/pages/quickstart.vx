@@ -1,14 +1,19 @@
-component QuickstartPage {
+component QuickstartPage(data) {
+  ~steps = data.steps
+  ~checkCommand = data.checkCommand
+  ~checkScope = data.checkScope
+
   render {
     <section>
       <p class="eyebrow">Quickstart</p>
       <h1>Build your first Velox app.</h1>
       <ol>
-        <li>Initialize a new project.</li>
-        <li>Create pages with vx files.</li>
-        <li>Build and preview output.</li>
-        <li>Deploy with a cloud target bundle.</li>
+        {#each steps as step}
+          <li>{step}</li>
+        {/each}
       </ol>
+      <p>Recommended final check: {checkCommand}</p>
+      <p>Check scope: {checkScope}</p>
     </section>
 
     <section class="card">

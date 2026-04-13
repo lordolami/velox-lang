@@ -9,6 +9,7 @@ const APPS = [
   { name: "dashboard", sourceDir: resolve("examples", "showcase", "dashboard", "pages") },
   { name: "landing", sourceDir: resolve("examples", "showcase", "landing", "pages") },
   { name: "core-pages", sourceDir: resolve("examples", "pages") },
+  { name: "velox-web", sourceDir: resolve("apps", "velox-web") },
 ];
 
 async function main() {
@@ -95,6 +96,8 @@ function mirrorJsToMjs(outDir, mjsDir, jsFiles) {
     const target = join(mjsDir, rel.replace(/\.js$/i, ".mjs"));
     mkdirSync(dirname(target), { recursive: true });
     let code = readFileSync(jsFile, "utf8");
+    // Node ESM benchmark runtime cannot execute CSS side-effect imports.
+    code = code.replace(/^\s*import\s+['"][^'"]+\.css['"];?\s*$/gm, "");
     code = code.replace(/from\s+(['"])(\.{1,2}\/[^'"]+?)\.js\1/g, "from $1$2.mjs$1");
     code = code.replace(/import\((['"])(\.{1,2}\/[^'"]+?)\.js\1\)/g, "import($1$2.mjs$1)");
     writeFileSync(target, code, "utf8");

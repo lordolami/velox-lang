@@ -11,6 +11,7 @@ const CHECKS = [
   { name: "apps", npmArgs: ["run", "bench:apps:gate"] },
   { name: "deterministic", command: process.execPath, args: [resolve("scripts", "check-deterministic-output.cjs")] },
   { name: "quickstart", command: process.execPath, args: [resolve("scripts", "verify-quickstart.cjs")] },
+  { name: "velox-web", command: process.execPath, args: [resolve("scripts", "check-velox-web.cjs")] },
 ];
 
 function main() {

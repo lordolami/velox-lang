@@ -1,8 +1,19 @@
-component AIBuildPage {
+component AIBuildPage(data) {
+  ~requiredContextDocs = data.requiredContextDocs
+  ~validationGates = data.validationGates
+  ~recommendedSpecs = data.recommendedSpecs
+
   render {
     <section>
       <p class="eyebrow">AI Build</p>
       <h1>Generate frontend code with Velox contracts.</h1>
+      <p>Required context docs: {requiredContextDocs}</p>
+      <p>Validation gates expected before ship: {validationGates}</p>
+      <ul>
+        {#each recommendedSpecs as specPath}
+          <li>{specPath}</li>
+        {/each}
+      </ul>
       <div class="grid two">
         <article class="card">
           <h2>Input</h2>

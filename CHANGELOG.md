@@ -29,6 +29,11 @@
 - Startup operator docs pack under `spec/startup/`.
 - `.env.example` for baseline environment/secrets setup.
 - Cloud deploy test suite (`tests/deploy-cloud.test.ts`).
+- Official Velox site reliability gate:
+  - `npm run check:velox-web`
+  - validates compile/build/deploy outputs for `apps/velox-web`
+- App-level benchmark suite now includes `apps/velox-web`.
+- Data accuracy modules added for key `apps/velox-web` routes (`index`, `benchmarks`, `docs`, `quickstart`, `ai-build`, `blog`).
 
 ### Changed
 

@@ -48,8 +48,8 @@ Y. Feedback loop plan: complete (`spec/startup/feedback-loop.md`).
 
 1. `npm install`
 2. `npm run startup:ready`
-3. `node dist/cli.js init my-startup --template pages`
-4. Build frontend in `.vx` under `my-startup/pages`
-5. `node dist/cli.js deploy my-startup --target vercel --name my-startup`
-6. Publish resulting deploy bundle using generated `DEPLOY.md`
-
+3. `npm run check:velox-web`
+4. `node dist/cli.js init my-startup --template pages`
+5. Build frontend in `.vx` under `my-startup/pages`
+6. `node dist/cli.js deploy my-startup --target vercel --name my-startup`
+7. Publish resulting deploy bundle using generated `DEPLOY.md`

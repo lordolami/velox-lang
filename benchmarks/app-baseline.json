@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-04-12",
+  "updatedAt": "2026-04-13",
   "apps": {
     "todo": {
       "maxBuildMs": 1400,
@@ -25,10 +25,16 @@
       "minRendersPerSecond": 250000,
       "maxTotalKb": 55,
       "minRoutes": 5
+    },
+    "velox-web": {
+      "maxBuildMs": 2600,
+      "minRendersPerSecond": 250000,
+      "maxTotalKb": 140,
+      "minRoutes": 8
     }
   },
   "summary": {
-    "maxAvgBuildMs": 1400,
+    "maxAvgBuildMs": 1700,
     "minAvgRendersPerSecond": 250000
   }
 }
