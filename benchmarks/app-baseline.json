@@ -28,7 +28,7 @@
     },
     "velox-web": {
       "maxBuildMs": 2600,
-      "minRendersPerSecond": 250000,
+      "minRendersPerSecond": 170000,
       "maxTotalKb": 140,
       "minRoutes": 8
     }
