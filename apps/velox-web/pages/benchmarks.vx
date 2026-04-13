@@ -1,37 +1,60 @@
-import { speed_ratio, bundle_delta } from "../utils.vx"
-
 component BenchmarksPage(data) {
-  ~jsBundle = data.reactBundleKb
-  ~veloxBundle = data.veloxBundleKb
-  ~speedup = speed_ratio(jsBundle, veloxBundle)
-  ~saved = bundle_delta(jsBundle, veloxBundle)
-  ~fastAverage = data.fastAverageSpeedup
-  ~fastWorst = data.fastWorstSpeedup
-  ~avgBuildMs = data.appAvgBuildMs
-  ~avgRendersPerSecond = data.appAvgRendersPerSecond
+  ~reactBundleKb = data.reactBundleKb
+  ~veloxBundleKb = data.veloxBundleKb
+  ~fastAverageSpeedup = data.fastAverageSpeedup
+  ~fastWorstSpeedup = data.fastWorstSpeedup
+  ~appAvgBuildMs = data.appAvgBuildMs
+  ~appAvgRendersPerSecond = data.appAvgRendersPerSecond
   ~measuredAt = data.measuredAt
   ~sourceReport = data.sourceReport
 
   render {
-    <section>
+    <section class="page-section">
       <p class="eyebrow">Benchmarks</p>
-      <h1>Measured performance with reproducible gates.</h1>
-      <div class="grid two">
-        <article class="card">
-          <h2>Bundle size delta</h2>
-          <p>React baseline kb: {jsBundle}</p>
-          <p>Velox app kb: {veloxBundle}</p>
-          <p>Saved kb: {saved}</p>
-          <p>Computed ratio via @fast helper: {speedup}x</p>
+      <h1 class="page-title">Real app numbers, not vibes.</h1>
+      <p class="page-lead">These measurements were last updated on {measuredAt} from {sourceReport}. They describe the current Velox baseline, not a fantasy benchmark.</p>
+
+      <div class="bench-grid">
+        <article class="bench-card glow">
+          <div class="bench-lbl">Bundle size</div>
+          <div class="bench-pair">
+            <div>
+              <p class="bench-name">React baseline</p>
+              <div class="metric-big">{reactBundleKb}kb</div>
+            </div>
+            <div>
+              <p class="bench-name">Velox output</p>
+              <div class="metric-big accent">{veloxBundleKb}kb</div>
+            </div>
+          </div>
+          <p class="metric-copy">The gap is what users feel first: less framework code before your app even begins.</p>
         </article>
-        <article class="card">
-          <h2>Wasm speed ratio</h2>
-          <p>Average @fast speedup: {fastAverage}</p>
-          <p>Worst @fast speedup: {fastWorst}</p>
-          <p>Average app build ms: {avgBuildMs}</p>
-          <p>Average app renders per second: {avgRendersPerSecond}</p>
-          <p>Measured at: {measuredAt}</p>
-          <p>Source report: {sourceReport}</p>
+
+        <article class="bench-card">
+          <div class="bench-lbl">@fast speedup window</div>
+          <div class="bench-pair">
+            <div>
+              <p class="bench-name">Average</p>
+              <div class="metric-big accent">{fastAverageSpeedup}</div>
+            </div>
+            <div>
+              <p class="bench-name">Worst</p>
+              <div class="metric-big">{fastWorstSpeedup}</div>
+            </div>
+          </div>
+          <p class="metric-copy">Wasm wins are measured where the workload actually deserves a faster path.</p>
+        </article>
+
+        <article class="bench-card">
+          <div class="bench-lbl">Average app build</div>
+          <div class="metric-big">{appAvgBuildMs}ms</div>
+          <p class="metric-copy">Purpose-built compilation keeps iteration tight and the feedback loop short.</p>
+        </article>
+
+        <article class="bench-card glow">
+          <div class="bench-lbl">Average render throughput</div>
+          <div class="metric-big accent">{appAvgRendersPerSecond}</div>
+          <p class="metric-copy">App-level rendering benchmarks help keep the framework honest outside of micro-kernel tests.</p>
         </article>
       </div>
     </section>

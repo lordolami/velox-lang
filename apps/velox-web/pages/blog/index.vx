@@ -6,18 +6,23 @@ component BlogIndexPage(data) {
   ~updatedAt = data.updatedAt
 
   render {
-    <section>
+    <section class="page-section narrow">
       <p class="eyebrow">Blog</p>
-      <h1>Release notes and engineering updates.</h1>
-      <p>Updated at: {updatedAt}</p>
-      <div class="grid two">
-        <a href="/blog/v1-status" class="card linkcard">
-          <h2>{statusTitle}</h2>
+      <h1 class="page-title">Build notes, roadmap signals, and proof that Velox is moving.</h1>
+      <p class="page-lead">These entries track the language and framework as they get closer to being the thing you can build a startup on.</p>
+
+      <div class="blog-grid">
+        <a href="/blog/v1-status" class="blog-card">
+          <p class="blog-date">{updatedAt}</p>
+          <h3>{statusTitle}</h3>
           <p>{statusSummary}</p>
+          <span class="blog-link">Read update</span>
         </a>
-        <a href="/blog/compiler-roadmap" class="card linkcard">
-          <h2>{roadmapTitle}</h2>
+        <a href="/blog/compiler-roadmap" class="blog-card">
+          <p class="blog-date">{updatedAt}</p>
+          <h3>{roadmapTitle}</h3>
           <p>{roadmapSummary}</p>
+          <span class="blog-link">Read roadmap</span>
         </a>
       </div>
     </section>

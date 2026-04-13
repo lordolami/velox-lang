@@ -1,12 +1,49 @@
-component WhyVeloxPage {
+component WhyPage() {
   render {
-    <section>
+    <section class="page-section">
       <p class="eyebrow">Why Velox</p>
-      <h1>Build faster without framework overload.</h1>
-      <div class="grid three">
-        <article class="card"><h2>Language first</h2><p>Reactive syntax and template primitives are built in.</p></article>
-        <article class="card"><h2>Performance first</h2><p>Small runtime and optional @fast acceleration.</p></article>
-        <article class="card"><h2>AI first docs</h2><p>Machine indexed specs make generation reliable.</p></article>
+      <h1 class="page-title">The frontend stack gets lighter when the language does more.</h1>
+      <p class="page-lead">Velox is trying to collapse the extra layers that turn simple interface work into framework archaeology.</p>
+
+      <div class="compare-grid">
+        <article class="compare-card">
+          <div class="compare-hd react">Typical JSX + framework setup</div>
+          <pre class="compare-body"><span class="kw">import</span> useState <span class="kw">from</span> <span class="str">"react"</span>
+<span class="kw">import</span> useEffect <span class="kw">from</span> <span class="str">"react"</span>
+
+<span class="kw">export default function</span> <span class="fn">Counter</span>()
+  <span class="kw">const</span> count = <span class="fn">useState</span>(<span class="nm">0</span>)
+
+  <span class="kw">return</span>
+    &lt;<span class="tg">button</span> onClick=setCount&gt;
+      count
+    &lt;/<span class="tg">button</span>&gt;</pre>
+        </article>
+        <article class="compare-card">
+          <div class="compare-hd velox">Velox component</div>
+          <pre class="compare-body"><span class="kw">component</span> <span class="fn">Counter</span>()
+  <span class="rx">~</span><span class="at">count</span> = <span class="nm">0</span>
+
+  <span class="kw">render</span>
+    &lt;<span class="tg">button</span> <span class="at">on:click</span>=count++&gt;
+      count
+    &lt;/<span class="tg">button</span>&gt;</pre>
+        </article>
+      </div>
+
+      <div class="value-grid">
+        <article class="value-card">
+          <h3>Less ceremony</h3>
+          <p>State, templates, routing, and compile targets are part of one system instead of several packages stitched together later.</p>
+        </article>
+        <article class="value-card">
+          <h3>Better defaults for AI</h3>
+          <p>Simpler syntax reduces prompt size, lowers hallucination risk, and makes generated code easier to inspect and refine.</p>
+        </article>
+        <article class="value-card">
+          <h3>Faster shipping</h3>
+          <p>Velox aims to spend complexity at compile time so your apps arrive smaller and your team spends less time fighting tooling.</p>
+        </article>
       </div>
     </section>
   }

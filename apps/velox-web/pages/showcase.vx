@@ -4,18 +4,60 @@ component ShowcasePage(data) {
   ~sourceRoot = data.sourceRoot
 
   render {
-    <section>
+    <section class="page-section">
       <p class="eyebrow">Showcase</p>
-      <h1>Apps built with Velox.</h1>
-      <p>{summary}</p>
-      <p>Current showcase cards: {appCount}</p>
-      <p>Source root: {sourceRoot}</p>
+      <h1 class="page-title">Reference apps that prove the language can carry real product work.</h1>
+      <p class="page-lead">{summary} The current set tracks {appCount} showcase apps under {sourceRoot}.</p>
 
-      <div class="grid two">
-        <article class="card"><h2>Todo App</h2><p>Reactive state and local interactions.</p></article>
-        <article class="card"><h2>Dashboard</h2><p>Routing, data modules, and layout composition.</p></article>
-        <article class="card"><h2>Landing Site</h2><p>Fast static output for marketing pages.</p></article>
-        <article class="card"><h2>Interop Demo</h2><p>External API and package integration flow.</p></article>
+      <div class="showcase-grid">
+        <article class="show-card">
+          <div class="show-preview preview-one"></div>
+          <div class="show-info">
+            <h4>Starter counter</h4>
+            <p>The smallest proof that reactive state, events, and render blocks stay readable.</p>
+            <span class="show-tag">starter</span>
+          </div>
+        </article>
+        <article class="show-card">
+          <div class="show-preview preview-two"></div>
+          <div class="show-info">
+            <h4>Todo application</h4>
+            <p>Stateful lists, filters, and persistence with a simpler mental model than typical JSX-heavy setups.</p>
+            <span class="show-tag">product pattern</span>
+          </div>
+        </article>
+        <article class="show-card">
+          <div class="show-preview preview-three"></div>
+          <div class="show-info">
+            <h4>Dashboard benchmark</h4>
+            <p>A data-heavy surface used to keep the framework honest on rendering and build performance.</p>
+            <span class="show-tag">performance</span>
+          </div>
+        </article>
+        <article class="show-card">
+          <div class="show-preview preview-four"></div>
+          <div class="show-info">
+            <h4>Velox web app</h4>
+            <p>The site you are looking at. It is part product surface, part framework integration proof.</p>
+            <span class="show-tag">self-hosted</span>
+          </div>
+        </article>
+        <article class="show-card ghost-card">
+          <div class="show-preview preview-five"></div>
+          <div class="show-info">
+            <h4>Your startup frontend</h4>
+            <p>The real target is not the demo grid. It is the product we can build next with the same language.</p>
+            <span class="show-tag">next</span>
+          </div>
+        </article>
+        <article class="show-card ghost-card">
+          <div class="show-preview preview-six"></div>
+          <div class="show-info">
+            <h4>More coming</h4>
+            <p>Each new reference app should raise the bar for what Velox can express cleanly and ship quickly.</p>
+            <span class="show-tag">roadmap</span>
+          </div>
+        </article>
       </div>
     </section>
   }

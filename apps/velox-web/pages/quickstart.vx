@@ -4,23 +4,57 @@ component QuickstartPage(data) {
   ~checkScope = data.checkScope
 
   render {
-    <section>
+    <section class="page-section narrow">
       <p class="eyebrow">Quickstart</p>
-      <h1>Build your first Velox app.</h1>
-      <ol>
-        {#each steps as step}
-          <li>{step}</li>
-        {/each}
-      </ol>
-      <p>Recommended final check: {checkCommand}</p>
-      <p>Check scope: {checkScope}</p>
-    </section>
+      <h1 class="page-title">From blank repo to working Velox app without framework drama.</h1>
+      <p class="page-lead">This is the shortest path to a real result. The current readiness command is <code>{checkCommand}</code> and it verifies {checkScope}.</p>
 
-    <section class="card">
-      <h2>Starter file</h2>
-      <pre>component Home(title)
-state count starts at zero
-render shows title and count</pre>
+      <div class="qs-steps">
+        <article class="qs-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Clone or create a workspace</h4>
+            <p>Start inside a clean project folder so the compiler, examples, and docs can live together from day one.</p>
+            <div class="step-code">git clone https://github.com/lakesbim/velox.git</div>
+          </div>
+        </article>
+        <article class="qs-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Install dependencies</h4>
+            <p>Velox runs on a normal TypeScript toolchain, which keeps the setup legible and easy to contribute to.</p>
+            <div class="step-code">npm install</div>
+          </div>
+        </article>
+        <article class="qs-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Build the compiler</h4>
+            <p>Compile the TypeScript codebase so the CLI and framework pieces are ready to generate output.</p>
+            <div class="step-code">npm run build</div>
+          </div>
+        </article>
+        <article class="qs-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Run the readiness gate</h4>
+            <p>This is the best single command for confirming the whole product is in a shape you can build on confidently.</p>
+            <div class="step-code">{checkCommand}</div>
+          </div>
+        </article>
+        <article class="qs-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Use the reference examples</h4>
+            <p>The current starter flow is grounded in these steps:</p>
+            <ul class="inline-list">
+              {#each steps as item}
+                <li>{item}</li>
+              {/each}
+            </ul>
+          </div>
+        </article>
+      </div>
     </section>
   }
 }

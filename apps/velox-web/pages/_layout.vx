@@ -2,47 +2,48 @@ import "../styles/global.css"
 
 component SiteLayout(content, pathname) {
   render {
-    <div class="site-shell flagship-shell">
-      <header class="site-header">
-        <div class="site-header-inner">
-          <a href="/" class="site-brand">
-            <span class="site-brand-mark">VX</span>
-            <span class="site-brand-copy">
-              <strong>Velox</strong>
-              <em>Frontend language for AI-native products</em>
-            </span>
-          </a>
-          <nav class="site-nav">
-            <a href="/quickstart">Quickstart</a>
-            <a href="/docs">Docs</a>
-            <a href="/why">Why</a>
-            <a href="/benchmarks">Benchmarks</a>
-            <a href="/showcase">Showcase</a>
-            <a href="/blog">Blog</a>
-          </nav>
-          <div class="site-nav-cta">
-            <a href="/ai-build" class="site-cta-link">AI Build</a>
-          </div>
+    <div class="site-shell">
+      <div class="shell-grid"></div>
+      <div class="shell-radial shell-radial-left"></div>
+      <div class="shell-radial shell-radial-right"></div>
+
+      <header class="nav">
+        <a href="/" class="nav-logo">
+          <span class="logo-v">VX</span>
+          <span class="logo-name">Velox</span>
+        </a>
+        <nav class="nav-center">
+          <a href="/docs" class="nav-link">Docs</a>
+          <a href="/quickstart" class="nav-link">Quickstart</a>
+          <a href="/why" class="nav-link">Why Velox</a>
+          <a href="/benchmarks" class="nav-link">Benchmarks</a>
+          <a href="/showcase" class="nav-link">Showcase</a>
+          <a href="/blog" class="nav-link">Blog</a>
+        </nav>
+        <div class="nav-right">
+          <a href="https://github.com/lakesbim/velox" class="nav-gh">GitHub</a>
+          <a href="/quickstart" class="nav-start">Get Started</a>
         </div>
       </header>
 
-      <main class="page page-frame">{content}</main>
+      <main class="page-frame">{content}</main>
 
-      <footer class="site-footer">
-        <div class="site-footer-inner">
-          <div class="footer-lead">
-            <span class="site-brand-mark footer-mark">VX</span>
-            <div>
-              <strong>Velox</strong>
-              <p>Readable syntax, compiler-owned output, and a foundation for the design-to-app platform we actually want to ship.</p>
-            </div>
-          </div>
-          <div class="footer-links-row">
-            <a href="/docs">Docs</a>
-            <a href="/quickstart">Quickstart</a>
-            <a href="/benchmarks">Benchmarks</a>
-            <a href="/showcase">Showcase</a>
-          </div>
+      <footer class="footer">
+        <div class="footer-l">
+          <span class="footer-brand">
+            <span class="footer-mark">VX</span>
+            <span>Built with Velox</span>
+          </span>
+          <span class="footer-dot"></span>
+          <span>JavaScript + Wasm output</span>
+          <span class="footer-dot"></span>
+          <span>Frontend language for fast shipping</span>
+        </div>
+        <div class="footer-links">
+          <a href="/docs">Docs</a>
+          <a href="/benchmarks">Benchmarks</a>
+          <a href="/showcase">Showcase</a>
+          <a href="/blog">Blog</a>
         </div>
       </footer>
     </div>

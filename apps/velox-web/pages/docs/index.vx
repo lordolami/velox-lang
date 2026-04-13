@@ -1,36 +1,47 @@
-component DocsIndexPage(data) {
+component DocsPage(data) {
   ~docsIndexed = data.docsIndexed
   ~indexPath = data.indexPath
   ~keyAreas = data.keyAreas
 
   render {
-    <section>
-      <p class="eyebrow">Docs</p>
-      <h1>Everything needed to build with Velox.</h1>
-      <p>Machine indexed docs available: {docsIndexed}</p>
-      <p>Index source: {indexPath}</p>
-      <ul>
-        {#each keyAreas as area}
-          <li>{area}</li>
-        {/each}
-      </ul>
-      <div class="grid two">
-        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/MASTER_SPEC.md" class="card linkcard" target="_blank">
-          <h2>Master Spec</h2>
-          <p>Language contract and runtime behavior.</p>
-        </a>
-        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/framework-v1.md" class="card linkcard" target="_blank">
-          <h2>Framework Spec</h2>
-          <p>Routing, layout, data, and boundaries.</p>
-        </a>
-        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/quickstart.md" class="card linkcard" target="_blank">
-          <h2>Quickstart Doc</h2>
-          <p>First app flow from init to deploy.</p>
-        </a>
-        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/diagnostics.md" class="card linkcard" target="_blank">
-          <h2>Diagnostics</h2>
-          <p>Error catalog with stable diagnostic codes.</p>
-        </a>
+    <section class="docs-hero page-section">
+      <p class="eyebrow">Documentation</p>
+      <h1 class="page-title">Everything an AI and a human need to build with Velox.</h1>
+      <p class="page-lead">The docs are written to be legible to builders, agents, and future teammates. The index lives at {indexPath} and currently tracks {docsIndexed} assets.</p>
+    </section>
+
+    <section class="docs-layout section-tight">
+      <aside class="docs-sidebar">
+        <p class="docs-section-title">Start here</p>
+        <a href="/quickstart" class="docs-link">Quickstart</a>
+        <a href="/why" class="docs-link">Why Velox</a>
+        <a href="/benchmarks" class="docs-link">Benchmarks</a>
+        <p class="docs-section-title">Core areas</p>
+        <a href="https://github.com/lakesbim/velox/blob/main/spec/MASTER_SPEC.md" class="docs-link">Master spec</a>
+        <a href="https://github.com/lakesbim/velox/blob/main/spec/lsp-roadmap.md" class="docs-link">Editor intelligence</a>
+        <a href="https://github.com/lakesbim/velox/blob/main/spec/startup/README.md" class="docs-link">Startup pack</a>
+        <a href="https://github.com/lakesbim/velox/blob/main/spec/docs-index.json" class="docs-link">Docs index</a>
+      </aside>
+      <div class="docs-main">
+        <div class="docs-cards">
+          {#each keyAreas as item}
+            <article class="doc-card">
+              <div class="doc-card-icon">*</div>
+              <h4>{item}</h4>
+              <p>Part of the current Velox knowledge base and build surface for product and tooling work.</p>
+            </article>
+          {/each}
+          <article class="doc-card accent-card">
+            <div class="doc-card-icon">&gt;&gt;</div>
+            <h4>Start with the master spec</h4>
+            <p>The spec folder is the single source of truth for the language, framework, benchmarks, and startup readiness model.</p>
+          </article>
+          <article class="doc-card accent-card">
+            <div class="doc-card-icon">VX</div>
+            <h4>Build with confidence</h4>
+            <p>The docs are meant to be operational, not decorative. Every guide should help you ship a real page or feature faster.</p>
+          </article>
+        </div>
       </div>
     </section>
   }

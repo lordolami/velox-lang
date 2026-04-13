@@ -523,9 +523,11 @@ export function emitRouterHtml(title: string, options?: { stylesheets?: string[]
 ${stylesheetBlock}    <style>
       body {
         margin: 0;
-        font-family: ui-sans-serif, -apple-system, Segoe UI, sans-serif;
-        background: #fffaf2;
-        color: #101321;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top, rgba(127, 119, 221, 0.16), transparent 28%),
+          linear-gradient(180deg, #040405 0%, #030303 100%);
+        color: #f8f8fb;
       }
       #status {
         position: fixed;
@@ -534,9 +536,9 @@ ${stylesheetBlock}    <style>
         min-height: 24px;
         padding: 6px 10px;
         border-radius: 999px;
-        background: rgba(255, 250, 242, 0.86);
-        border: 1px solid rgba(16, 19, 33, 0.08);
-        color: rgba(16, 19, 33, 0.56);
+        background: rgba(8, 8, 12, 0.86);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(248, 248, 251, 0.58);
         font-size: 11px;
         letter-spacing: 0.04em;
         backdrop-filter: blur(12px);

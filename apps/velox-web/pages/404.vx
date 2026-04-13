@@ -1,10 +1,10 @@
-component NotFoundPage(pathname) {
+component NotFoundPage() {
   render {
     <section class="notfound">
-      <p class="eyebrow">404</p>
-      <h1>Page not found.</h1>
-      <p>The route does not exist in this Velox app.</p>
-      <p><a href="/">Go back home</a></p>
+      <div class="notfound-code">404</div>
+      <h2>That route does not exist.</h2>
+      <p>The page you asked for is missing, but the rest of Velox is still right here.</p>
+      <a href="/" class="btn-cta">Back to home</a>
     </section>
   }
 }
