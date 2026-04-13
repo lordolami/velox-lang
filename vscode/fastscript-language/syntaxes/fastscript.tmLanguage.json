@@ -1,0 +1,21 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "FastScript",
+  "scopeName": "source.fastscript",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#functions" }
+  ],
+  "repository": {
+    "comments": { "patterns": [{ "name": "comment.line.double-slash.fastscript", "match": "//.*$" }] },
+    "strings": { "patterns": [{ "name": "string.quoted.double.fastscript", "begin": "\"", "end": "\"", "patterns": [{ "match": "\\\\.", "name": "constant.character.escape.fastscript" }] }] },
+    "keywords": { "patterns": [{ "name": "keyword.control.fastscript", "match": "\\b(export|default|function|return|if|else|for|while|async|await|import|from|state|fn)\\b" }, { "name": "keyword.other.reactive.fastscript", "match": "~[A-Za-z_$][\\w$]*" }] },
+    "numbers": { "patterns": [{ "name": "constant.numeric.fastscript", "match": "\\b\\d+(?:\\.\\d+)?\\b" }] },
+    "operators": { "patterns": [{ "name": "keyword.operator.fastscript", "match": "[+\\-*/%=!<>|&]+" }] },
+    "functions": { "patterns": [{ "name": "entity.name.function.fastscript", "match": "\\b([A-Za-z_$][\\w$]*)\\s*(?=\\()" }] }
+  }
+}

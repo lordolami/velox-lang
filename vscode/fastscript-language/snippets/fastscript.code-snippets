@@ -1,0 +1,24 @@
+﻿{
+  "FastScript Component": {
+    "prefix": "fcomp",
+    "body": [
+      "export default function ${1:Component}(${2:ctx}) {",
+      "  return `",
+      "    <section>${3}</section>",
+      "  `;",
+      "}"
+    ],
+    "description": "FastScript component"
+  },
+  "FastScript API": {
+    "prefix": "fapi",
+    "body": [
+      "export const schemas = { POST: { ${1:name}: \"string\" } };",
+      "export async function POST(ctx) {",
+      "  const body = await ctx.input.validateBody(schemas.POST);",
+      "  return ctx.helpers.json({ ok: true, body });",
+      "}"
+    ],
+    "description": "FastScript API route"
+  }
+}

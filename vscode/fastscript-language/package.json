@@ -1,0 +1,36 @@
+﻿{
+  "name": "fastscript-language",
+  "displayName": "FastScript Language",
+  "description": "Syntax and language support for FastScript (.fs)",
+  "version": "0.1.0",
+  "publisher": "lakesbim-velox",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:fastscript"],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [{
+      "id": "fastscript",
+      "aliases": ["FastScript", "fastscript"],
+      "extensions": [".fs"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "fastscript",
+      "scopeName": "source.fastscript",
+      "path": "./syntaxes/fastscript.tmLanguage.json"
+    }],
+    "snippets": [{
+      "language": "fastscript",
+      "path": "./snippets/fastscript.code-snippets"
+    }]
+  },
+  "scripts": {
+    "test:lsp": "node ./lsp/smoke-test.cjs"
+  },
+  "devDependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.11"
+  }
+}
