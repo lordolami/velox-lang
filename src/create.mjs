@@ -123,6 +123,33 @@ export async function DELETE(ctx) {
 `,
     },
     {
+      path: join(appRoot, "api", "upload.js"),
+      content: `export const schemas = {
+  POST: { key: "string", content: "string" }
+};
+
+export async function POST(ctx) {
+  const body = await ctx.input.validateBody(schemas.POST);
+  const put = ctx.storage.put(body.key, Buffer.from(body.content, "utf8"));
+  return ctx.helpers.json({ ok: true, ...put, url: ctx.storage.url(body.key) });
+}
+`,
+    },
+    {
+      path: join(appRoot, "api", "webhook.js"),
+      content: `import { verifyWebhookRequest } from "../../src/webhook.mjs";
+
+export async function POST(ctx) {
+  const result = await verifyWebhookRequest(ctx.req, {
+    secret: process.env.WEBHOOK_SECRET || "dev-secret",
+    replayDir: ".fastscript"
+  });
+  if (!result.ok) return ctx.helpers.json({ ok: false, reason: result.reason }, 401);
+  return ctx.helpers.json({ ok: true });
+}
+`,
+    },
+    {
       path: join(appRoot, "middleware.fs"),
       content: `export async function middleware(ctx, next) {
   const protectedRoute = ctx.pathname.startsWith("/private");

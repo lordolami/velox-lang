@@ -33,6 +33,8 @@ npm run worker
 npm run deploy:node
 npm run deploy:vercel
 npm run deploy:cloudflare
+npm run release:patch
+npm run pack:check
 ```
 
 - `npm run migrate`: convert `app/pages` files (`.js/.jsx/.ts/.tsx`) to `.fs`
@@ -50,6 +52,15 @@ npm run deploy:cloudflare
 - `npm run qa:all`: full quality sweep in one command
 - `npm run worker`: run queue worker runtime
 - `npm run deploy:*`: generate deploy adapters for node/vercel/cloudflare
+- `npm run release:*`: semver bump + changelog append
+- `npm run pack:check`: npm publish dry-run
+
+## Additional Docs
+
+- `docs/AI_CONTEXT_PACK_V1.md`
+- `docs/PLUGIN_API_CONTRACT.md`
+- `docs/INCIDENT_PLAYBOOK.md`
+- `docs/DEPLOY_GUIDE.md`
 
 ## Project layout
 

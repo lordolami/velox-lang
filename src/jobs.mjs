@@ -31,6 +31,7 @@ export function createJobQueue({ dir = ".fastscript" } = {}) {
         attempts: 0,
         maxAttempts: opts.maxAttempts ?? 3,
         backoffMs: opts.backoffMs ?? 250,
+        repeatEveryMs: opts.repeatEveryMs ?? 0,
       };
       state.jobs.push(job);
       persist();
@@ -97,7 +98,7 @@ export async function runWorker({ dir = ".fastscript", pollMs = 350 } = {}) {
   for (const s of schedules) {
     if (!s || !s.name) continue;
     const exists = queue.list().some((j) => j.name === s.name && j.runAt > Date.now());
-    if (!exists) queue.enqueue(s.name, s.payload || {}, { delayMs: s.everyMs ?? 1000, maxAttempts: s.maxAttempts ?? 3 });
+    if (!exists) queue.enqueue(s.name, s.payload || {}, { delayMs: s.everyMs ?? 1000, maxAttempts: s.maxAttempts ?? 3, repeatEveryMs: s.everyMs ?? 0 });
   }
 
   console.log(`worker started: handlers=${handlers.size}`);
@@ -111,6 +112,9 @@ export async function runWorker({ dir = ".fastscript", pollMs = 350 } = {}) {
       }
       try {
         await handle(job.payload, { queue });
+        if (job.repeatEveryMs > 0) {
+          queue.enqueue(job.name, job.payload, { delayMs: job.repeatEveryMs, maxAttempts: job.maxAttempts, backoffMs: job.backoffMs, repeatEveryMs: job.repeatEveryMs });
+        }
         queue.ack(job.id);
       } catch {
         queue.fail(job);

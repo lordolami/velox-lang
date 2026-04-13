@@ -35,7 +35,11 @@
     "test:jobs": "node ./scripts/test-jobs.mjs",
     "bench:report": "node ./scripts/bench-report.mjs",
     "test:core": "npm run test:middleware && npm run test:auth && npm run test:db && npm run test:validation && npm run test:webhook-storage && npm run test:jobs && npm run test:roundtrip",
-    "qa:all": "npm run validate && npm run test:core && npm run smoke:dev && npm run smoke:start && npm run bench:report"
+    "qa:all": "npm run validate && npm run test:core && npm run smoke:dev && npm run smoke:start && npm run bench:report",
+    "release:patch": "node ./scripts/release.mjs patch",
+    "release:minor": "node ./scripts/release.mjs minor",
+    "release:major": "node ./scripts/release.mjs major",
+    "pack:check": "npm pack --dry-run"
   },
   "engines": {
     "node": ">=20.0.0"

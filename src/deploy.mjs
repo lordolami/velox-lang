@@ -16,6 +16,11 @@ export async function runDeploy(args = []) {
       `module.exports = { apps: [{ name: "fastscript-app", script: "node", args: "./src/cli.mjs start", env: { NODE_ENV: "production", PORT: 4173 } }] };\n`,
       "utf8",
     );
+    writeFileSync(
+      join(root, "Dockerfile"),
+      `FROM node:20-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev\nCOPY . .\nRUN npm run build\nENV NODE_ENV=production\nEXPOSE 4173\nCMD [\"node\",\"./src/cli.mjs\",\"start\"]\n`,
+      "utf8",
+    );
     console.log("deploy adapter ready: ecosystem.config.cjs (PM2/Node)");
     return;
   }

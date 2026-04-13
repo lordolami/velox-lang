@@ -61,7 +61,17 @@ try {
   });
   if (bad.status !== 400) throw new Error(`Expected 400 on invalid JSON, got ${bad.status}`);
 
-  console.log("smoke-dev pass: SSR, API, middleware redirect, auth cookie, validation");
+  const upload = await fetch("http://localhost:4173/api/upload", {
+    method: "POST",
+    headers: { "content-type": "application/json", accept: "application/json" },
+    body: JSON.stringify({ key: "smoke/one.txt", content: "hello" }),
+  });
+  if (upload.status !== 200) throw new Error(`Upload failed: ${upload.status}`);
+  const up = await upload.json();
+  const blob = await fetch(`http://localhost:4173${up.url}`);
+  if (blob.status !== 200) throw new Error(`Uploaded blob fetch failed: ${blob.status}`);
+
+  console.log("smoke-dev pass: SSR, API, middleware redirect, auth cookie, validation, upload");
 } finally {
   proc.kill("SIGTERM");
   await sleep(400);

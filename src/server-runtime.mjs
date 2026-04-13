@@ -10,6 +10,10 @@ import { readJsonBody, validateShape } from "./validation.mjs";
 import { loadEnv, validateAppEnv } from "./env.mjs";
 import { createLogger } from "./logger.mjs";
 import { createJobQueue } from "./jobs.mjs";
+import { securityHeaders, rateLimit, csrf } from "./security.mjs";
+import { createFileCache } from "./cache.mjs";
+import { createTracer } from "./observability.mjs";
+import { createLocalStorage } from "./storage.mjs";
 
 const DIST_DIR = resolve("dist");
 const DB_DIR = resolve(".fastscript");
@@ -116,11 +120,14 @@ export async function runServer({ mode = "development", watchMode = false, build
   await validateAppEnv();
 
   const logger = createLogger({ service: "fastscript-server" });
+  const tracer = createTracer({ service: "fastscript-server" });
   if (buildOnStart) await runBuild();
 
   const sessions = createSessionManager({ dir: DB_DIR, cookieName: "fs_session", secret: process.env.SESSION_SECRET || "fastscript-dev-secret" });
   const db = createFileDatabase({ dir: DB_DIR, name: "appdb" });
   const queue = createJobQueue({ dir: DB_DIR });
+  const cache = createFileCache({ dir: join(DB_DIR, "cache") });
+  const storage = createLocalStorage({ dir: join(DB_DIR, "storage") });
 
   if (watchMode) {
     let timer = null;
@@ -140,6 +147,7 @@ export async function runServer({ mode = "development", watchMode = false, build
   const server = createServer(async (req, res) => {
     const requestId = logger.requestId();
     const start = Date.now();
+    const span = tracer.span("request", { requestId, path: req.url, method: req.method });
     res.setHeader("x-request-id", requestId);
 
     try {
@@ -163,6 +171,8 @@ export async function runServer({ mode = "development", watchMode = false, build
         user: session?.user ?? null,
         db,
         queue,
+        cache,
+        storage,
         auth: {
           login: (user, opts = {}) => {
             const token = sessions.create(user, opts.maxAge ?? 60 * 60 * 24 * 7);
@@ -206,15 +216,31 @@ export async function runServer({ mode = "development", watchMode = false, build
       }
 
       const target = join(DIST_DIR, pathname === "/" ? "index.html" : pathname.slice(1));
+      if (pathname.startsWith("/__storage/")) {
+        const key = pathname.slice("/__storage/".length);
+        const file = storage.get(key);
+        if (!file) {
+          writeResponse(res, { status: 404, body: "Not found" });
+          span.end({ status: 404, kind: "storage" });
+          return;
+        }
+        res.writeHead(200, { "content-type": "application/octet-stream" });
+        res.end(file);
+        span.end({ status: 200, kind: "storage" });
+        return;
+      }
       if (existsSync(target) && statSync(target).isFile() && !pathname.endsWith(".html")) {
         const body = readFileSync(target);
         res.writeHead(200, { "content-type": contentType(target) });
         res.end(body);
         logger.info("static", { requestId, path: pathname, status: 200, ms: Date.now() - start });
+        span.end({ status: 200, kind: "static" });
         return;
       }
 
       const middlewareList = [];
+      middlewareList.push(securityHeaders(), rateLimit());
+      if (process.env.CSRF_PROTECT === "1") middlewareList.push(csrf());
       if (manifest.middleware) {
         const mm = await importDist(manifest.middleware);
         if (Array.isArray(mm.middlewares)) middlewareList.push(...mm.middlewares);
@@ -277,11 +303,13 @@ export async function runServer({ mode = "development", watchMode = false, build
         res.writeHead(out.status ?? 200, { "content-type": "text/html; charset=utf-8" });
         res.end(htmlDoc(out.html, payload, hasStyles));
         logger.info("ssr", { requestId, path: pathname, status: out.status ?? 200, ms: Date.now() - start });
+        span.end({ status: out.status ?? 200, kind: "ssr" });
         return;
       }
 
       writeResponse(res, out);
       logger.info("response", { requestId, path: pathname, status: out?.status ?? 200, ms: Date.now() - start });
+      span.end({ status: out?.status ?? 200, kind: "response" });
     } catch (error) {
       const status = error?.status && Number.isInteger(error.status) ? error.status : 500;
       const payload = {
@@ -297,10 +325,11 @@ export async function runServer({ mode = "development", watchMode = false, build
         res.writeHead(status, { "content-type": "application/json; charset=utf-8" });
         res.end(JSON.stringify(payload));
       } else {
-        res.writeHead(status, { "content-type": "text/plain; charset=utf-8" });
-        res.end(`FastScript server error:\n${payload.error.message}`);
+        res.writeHead(status, { "content-type": "text/html; charset=utf-8" });
+        res.end(`<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Error</title><style>body{background:#050505;color:#fff;font:16px/1.6 ui-sans-serif,system-ui;padding:40px}code{color:#9f92ff}</style></head><body><h1>Something went wrong</h1><p>Please retry or roll back to the previous deploy.</p><p>Request ID: <code>${requestId}</code></p></body></html>`);
       }
       logger.error("request_error", { requestId, status, path: req.url, error: payload.error.message });
+      span.end({ status, error: payload.error.message, kind: "error" });
     }
   });
 

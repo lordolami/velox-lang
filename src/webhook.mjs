@@ -1,4 +1,6 @@
 ﻿import { createHmac, timingSafeEqual } from "node:crypto";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 
 export async function readRawBody(req) {
   const chunks = [];
@@ -27,11 +29,43 @@ export function isReplay(tsSeconds, maxSkewSec = 300) {
   return Math.abs(now - ts) > maxSkewSec;
 }
 
-export async function verifyWebhookRequest(req, { secret, signatureHeader = "x-signature", timestampHeader = "x-timestamp", maxSkewSec = 300 } = {}) {
+function replayStore({ dir = ".fastscript", ttlSec = 600 } = {}) {
+  const root = resolve(dir);
+  mkdirSync(root, { recursive: true });
+  const file = join(root, "webhook-replay.json");
+  let state = { seen: {} };
+  if (existsSync(file)) {
+    try { state = JSON.parse(readFileSync(file, "utf8")); } catch {}
+  }
+  function persist() {
+    writeFileSync(file, JSON.stringify(state, null, 2), "utf8");
+  }
+  return {
+    has(id) {
+      const now = Date.now();
+      for (const [k, exp] of Object.entries(state.seen)) if (exp < now) delete state.seen[k];
+      persist();
+      return Boolean(state.seen[id]);
+    },
+    add(id) {
+      state.seen[id] = Date.now() + ttlSec * 1000;
+      persist();
+    },
+  };
+}
+
+export async function verifyWebhookRequest(req, { secret, signatureHeader = "x-signature", timestampHeader = "x-timestamp", idHeader = "x-event-id", maxSkewSec = 300, replayDir = ".fastscript" } = {}) {
   const raw = await readRawBody(req);
   const sig = req.headers[signatureHeader];
   const ts = req.headers[timestampHeader];
+  const eventId = req.headers[idHeader];
+  const id = Array.isArray(eventId) ? eventId[0] : eventId;
   if (isReplay(ts, maxSkewSec)) return { ok: false, reason: "replay_window" };
   if (!verifySignature(raw, Array.isArray(sig) ? sig[0] : sig, secret)) return { ok: false, reason: "bad_signature" };
+  if (id) {
+    const store = replayStore({ dir: replayDir, ttlSec: Math.max(maxSkewSec, 600) });
+    if (store.has(id)) return { ok: false, reason: "duplicate_event" };
+    store.add(id);
+  }
   return { ok: true, raw };
 }
