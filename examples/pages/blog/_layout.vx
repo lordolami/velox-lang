@@ -1,8 +1,0 @@
-component BlogLayout(content) {
-  render {
-    <section>
-      <h2>Blog Layout</h2>
-      {content}
-    </section>
-  }
-}

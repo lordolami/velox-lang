@@ -1,9 +1,0 @@
-component ContactPage(data, onSubmit) {
-  render {
-    <section>
-      <h2>Contact Sales</h2>
-      <p>{data}</p>
-      <button on:click={onSubmit}>Send Request</button>
-    </section>
-  }
-}

@@ -1,3 +1,0 @@
-component SettingsLoading {
-  render { <p>Loading settings...</p> }
-}

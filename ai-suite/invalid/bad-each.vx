@@ -1,3 +1,0 @@
-component Bad(items) {
-  render { <ul>{#each items item}<li>{item}</li>{/each}</ul> }
-}

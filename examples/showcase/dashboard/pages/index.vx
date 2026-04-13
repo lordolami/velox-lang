@@ -1,8 +1,0 @@
-component DashboardHome(data) {
-  render {
-    <section>
-      <h2>Executive Overview</h2>
-      <ul>{#each data as metric, i}<li>{i}: {metric}</li>{/each}</ul>
-    </section>
-  }
-}

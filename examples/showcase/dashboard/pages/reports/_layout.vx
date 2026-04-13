@@ -1,8 +1,0 @@
-component ReportsLayout(content) {
-  render {
-    <section>
-      <h2>Reports</h2>
-      {content}
-    </section>
-  }
-}

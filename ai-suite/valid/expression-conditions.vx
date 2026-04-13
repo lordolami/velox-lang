@@ -1,4 +1,0 @@
-component Flag(a, b, ready) {
-  ~ok = (a + 1) > b && ready
-  render { <p>{ok}</p> }
-}

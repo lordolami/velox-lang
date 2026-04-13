@@ -1,8 +1,0 @@
-{
-  "version": 1,
-  "updatedAt": "2026-04-12",
-  "minAverageSpeedup": 1.4,
-  "minWorstSpeedup": 0.75,
-  "minCaseSpeedup": 1.0,
-  "minPassingCases": 2
-}

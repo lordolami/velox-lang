@@ -1,30 +1,8 @@
-# Dependencies
 node_modules/
-**/node_modules/
-
-# Build outputs
 dist/
-dist-*/
-dist*/
-**/dist/
-**/dist-*/
-benchmarks/out/
-
-# Temp/deploy outputs
-.velox/
-*.log
-
-# Packaged artifacts
-*.tgz
-*.vsix
-
-# OS/editor
+.fastscript/
 .DS_Store
-Thumbs.db
-
-# Local env/config
-.env
-.env.*
-
-# Generated reports (keep canonical specs in git)
-spec/reports/
+.fastscript-tmp-compat/
+.tmp-*/
+exported-*/
+benchmarks/latest-report.md

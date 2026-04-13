@@ -1,52 +1,46 @@
 {
-  "name": "@lakesbim/velox",
-  "version": "0.18.0",
-  "description": "Velox language compiler (.vx -> JavaScript/WebAssembly-ready output)",
-  "main": "dist/index.js",
-  "files": [
-    "dist",
-    "README.md",
-    "CHANGELOG.md",
-    "LICENSE",
-    "spec"
-  ],
+  "name": "fastscript",
+  "version": "0.1.0",
+  "description": "JavaScript-first full-stack framework that is simpler and faster.",
+  "type": "module",
   "bin": {
-    "velox": "dist/cli.js"
+    "fastscript": "./src/cli.mjs"
   },
   "scripts": {
-    "clean:dist": "node scripts/clean-dist.cjs",
-    "build": "npm run clean:dist && tsc -p tsconfig.build.json",
-    "dev": "tsx src/cli.ts",
-    "test": "vitest run --pool=threads --maxWorkers=1",
-    "test:watch": "vitest",
-    "bench:fast": "node benchmarks/run-fast-vs-js.cjs",
-    "bench:fast:gate": "node benchmarks/check-fast-regression.cjs",
-    "bench:apps": "node benchmarks/run-app-level-bench.cjs",
-    "bench:apps:gate": "node benchmarks/check-app-regression.cjs",
-    "bench:apps:report": "node benchmarks/generate-app-report.cjs",
-    "bench:ai": "node benchmarks/run-ai-reliability.cjs",
-    "lsp:smoke": "node vscode/velox-language/lsp/smoke-test.cjs",
-    "lsp:perf": "node vscode/velox-language/lsp/perf-test.cjs",
-    "lsp:gate": "npm run lsp:smoke && npm run lsp:perf",
-    "verify:quickstart": "node scripts/verify-quickstart.cjs",
-    "check:deterministic": "node scripts/check-deterministic-output.cjs",
-    "check:velox-web": "node scripts/check-velox-web.cjs",
-    "startup:ready": "node scripts/check-startup-readiness.cjs",
-    "release:v1:check": "node scripts/release-v1-check.cjs",
-    "check:mega60": "tsx src/cli.ts check examples/mega60",
-    "build:mega60": "tsx src/cli.ts build examples/mega60 -o dist-mega60",
-    "prepack": "npm run build"
+    "dev": "node ./src/cli.mjs dev",
+    "start": "node ./src/cli.mjs start",
+    "build": "node ./src/cli.mjs build",
+    "create": "node ./src/cli.mjs create",
+    "check": "node ./src/cli.mjs check",
+    "migrate": "node ./src/cli.mjs migrate",
+    "bench": "node ./src/cli.mjs bench",
+    "export:js": "node ./src/cli.mjs export --to js --out exported-js-app",
+    "export:ts": "node ./src/cli.mjs export --to ts --out exported-ts-app",
+    "compat": "node ./src/cli.mjs compat",
+    "validate": "node ./src/cli.mjs validate",
+    "db:migrate": "node ./src/cli.mjs db:migrate",
+    "db:seed": "node ./src/cli.mjs db:seed",
+    "deploy:node": "node ./src/cli.mjs deploy --target node",
+    "deploy:vercel": "node ./src/cli.mjs deploy --target vercel",
+    "deploy:cloudflare": "node ./src/cli.mjs deploy --target cloudflare",
+    "worker": "node ./src/cli.mjs worker",
+    "smoke:dev": "node ./scripts/smoke-dev.mjs",
+    "smoke:start": "node ./scripts/smoke-start.mjs",
+    "test:middleware": "node ./scripts/test-middleware.mjs",
+    "test:auth": "node ./scripts/test-auth.mjs",
+    "test:db": "node ./scripts/test-db.mjs",
+    "test:roundtrip": "node ./scripts/test-roundtrip.mjs",
+    "test:validation": "node ./scripts/test-validation.mjs",
+    "test:webhook-storage": "node ./scripts/test-webhook-storage.mjs",
+    "test:jobs": "node ./scripts/test-jobs.mjs",
+    "bench:report": "node ./scripts/bench-report.mjs",
+    "test:core": "npm run test:middleware && npm run test:auth && npm run test:db && npm run test:validation && npm run test:webhook-storage && npm run test:jobs && npm run test:roundtrip",
+    "qa:all": "npm run validate && npm run test:core && npm run smoke:dev && npm run smoke:start && npm run bench:report"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@types/node": "^25.6.0",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2",
-    "vitest": "^4.1.4",
-    "vscode-languageserver": "^9.0.1",
-    "vscode-languageserver-textdocument": "^1.0.12"
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "esbuild": "^0.25.11"
   }
 }

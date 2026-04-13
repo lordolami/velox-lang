@@ -1,3 +1,0 @@
-component TodoNotFound {
-  render { <h2>Todo page not found</h2> }
-}

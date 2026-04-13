@@ -1,3 +1,0 @@
-component SettingsError(error) {
-  render { <p>Settings error: {error}</p> }
-}

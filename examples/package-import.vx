@@ -1,6 +1,0 @@
-import { createSignal } from "solid-js"
-import "core-js/stable"
-
-component PkgDemo {
-  render { <p>package imports enabled</p> }
-}

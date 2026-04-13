@@ -1,3 +1,0 @@
-@fast sum(a:, b: i32) -> i32 {
-  return a + b
-}

@@ -1,7 +1,0 @@
-component Footer {
-  render {
-    <footer class="demo-footer">
-      <p>Built with Velox.</p>
-    </footer>
-  }
-}

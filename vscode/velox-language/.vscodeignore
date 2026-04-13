@@ -1,9 +1,0 @@
-.vscode/**
-**/.DS_Store
-**/*.map
-node_modules/**
-dist/**
-!dist/extension.js
-!dist/lsp/server.js
-extension.js
-lsp/**

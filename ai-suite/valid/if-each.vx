@@ -1,9 +1,0 @@
-component Dashboard(items, ready) {
-  render {
-    {#if ready}
-      <ul>{#each items as item, i}<li>{i}:{item}</li>{/each}</ul>
-    {:else}
-      <p>Loading</p>
-    {/if}
-  }
-}
