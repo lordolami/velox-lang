@@ -524,29 +524,33 @@ ${stylesheetBlock}    <style>
       body {
         margin: 0;
         font-family: ui-sans-serif, -apple-system, Segoe UI, sans-serif;
-        background: #0f172a;
-        color: #e2e8f0;
-      }
-      header {
-        padding: 16px 20px;
-        border-bottom: 1px solid #1e293b;
-        background: #111827;
+        background: #fffaf2;
+        color: #101321;
       }
       #status {
-        color: #93c5fd;
-        font-size: 14px;
+        position: fixed;
+        left: 12px;
+        bottom: 12px;
+        min-height: 24px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 250, 242, 0.86);
+        border: 1px solid rgba(16, 19, 33, 0.08);
+        color: rgba(16, 19, 33, 0.56);
+        font-size: 11px;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(12px);
+        opacity: 0;
+        pointer-events: none;
       }
       #app {
-        padding: 20px;
+        min-height: 100vh;
       }
     </style>
   </head>
   <body>
-    <header>
-      <strong>Velox Router</strong>
-      <div id="status">Booting router...</div>
-    </header>
     <main id="app"></main>
+    <div id="status">Booting app...</div>
     <script type="module">
       import { startVeloxRouter } from "./__velox_router.js";
       startVeloxRouter();

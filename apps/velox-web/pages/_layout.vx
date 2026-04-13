@@ -2,22 +2,48 @@ import "../styles/global.css"
 
 component SiteLayout(content, pathname) {
   render {
-    <div class="site-shell">
-      <header class="topbar">
-        <a href="/" class="brand">Velox</a>
-        <nav class="topnav">
-          <a href="/quickstart">Quickstart</a>
-          <a href="/docs">Docs</a>
-          <a href="/why">Why Velox</a>
-          <a href="/benchmarks">Benchmarks</a>
-          <a href="/showcase">Showcase</a>
-          <a href="/blog">Blog</a>
-          <a href="/ai-build">AI Build</a>
-        </nav>
+    <div class="site-shell flagship-shell">
+      <header class="site-header">
+        <div class="site-header-inner">
+          <a href="/" class="site-brand">
+            <span class="site-brand-mark">VX</span>
+            <span class="site-brand-copy">
+              <strong>Velox</strong>
+              <em>Frontend language for AI-native products</em>
+            </span>
+          </a>
+          <nav class="site-nav">
+            <a href="/quickstart">Quickstart</a>
+            <a href="/docs">Docs</a>
+            <a href="/why">Why</a>
+            <a href="/benchmarks">Benchmarks</a>
+            <a href="/showcase">Showcase</a>
+            <a href="/blog">Blog</a>
+          </nav>
+          <div class="site-nav-cta">
+            <a href="/ai-build" class="site-cta-link">AI Build</a>
+          </div>
+        </div>
       </header>
-      <main class="page">{content}</main>
-      <footer class="footer">
-        <p>Velox compiles vx files to JavaScript and Wasm ready output.</p>
+
+      <main class="page page-frame">{content}</main>
+
+      <footer class="site-footer">
+        <div class="site-footer-inner">
+          <div class="footer-lead">
+            <span class="site-brand-mark footer-mark">VX</span>
+            <div>
+              <strong>Velox</strong>
+              <p>Readable syntax, compiler-owned output, and a foundation for the design-to-app platform we actually want to ship.</p>
+            </div>
+          </div>
+          <div class="footer-links-row">
+            <a href="/docs">Docs</a>
+            <a href="/quickstart">Quickstart</a>
+            <a href="/benchmarks">Benchmarks</a>
+            <a href="/showcase">Showcase</a>
+          </div>
+        </div>
       </footer>
     </div>
   }
