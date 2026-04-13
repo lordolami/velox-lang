@@ -4,44 +4,51 @@ component DocsPage(data) {
   ~keyAreas = data.keyAreas
 
   render {
-    <section class="docs-hero page-section">
-      <p class="eyebrow">Documentation</p>
-      <h1 class="page-title">Everything an AI and a human need to build with Velox.</h1>
-      <p class="page-lead">The docs are written to be legible to builders, agents, and future teammates. The index lives at {indexPath} and currently tracks {docsIndexed} assets.</p>
+    <section class="docs-hero-premium">
+      <div class="docs-hero-copy">
+        <p class="page-kicker">Documentation</p>
+        <h1 class="page-headline">A docs surface built to be read by builders, teammates, and models.</h1>
+        <p class="page-intro">Velox documentation is supposed to work like a real operating manual, not a decorative landing page. The active index lives at {indexPath} and currently tracks {docsIndexed} source assets.</p>
+      </div>
+      <div class="docs-pop-card popup-card">
+        <span>Source of truth</span>
+        <strong>Specs, framework notes, diagnostics, startup packs, benchmarks.</strong>
+      </div>
     </section>
 
-    <section class="docs-layout section-tight">
-      <aside class="docs-sidebar">
-        <p class="docs-section-title">Start here</p>
-        <a href="/quickstart" class="docs-link">Quickstart</a>
-        <a href="/why" class="docs-link">Why Velox</a>
-        <a href="/benchmarks" class="docs-link">Benchmarks</a>
-        <p class="docs-section-title">Core areas</p>
-        <a href="https://github.com/lakesbim/velox/blob/main/spec/MASTER_SPEC.md" class="docs-link">Master spec</a>
-        <a href="https://github.com/lakesbim/velox/blob/main/spec/lsp-roadmap.md" class="docs-link">Editor intelligence</a>
-        <a href="https://github.com/lakesbim/velox/blob/main/spec/startup/README.md" class="docs-link">Startup pack</a>
-        <a href="https://github.com/lakesbim/velox/blob/main/spec/docs-index.json" class="docs-link">Docs index</a>
-      </aside>
-      <div class="docs-main">
-        <div class="docs-cards">
-          {#each keyAreas as item}
-            <article class="doc-card">
-              <div class="doc-card-icon">*</div>
-              <h4>{item}</h4>
-              <p>Part of the current Velox knowledge base and build surface for product and tooling work.</p>
-            </article>
-          {/each}
-          <article class="doc-card accent-card">
-            <div class="doc-card-icon">&gt;&gt;</div>
-            <h4>Start with the master spec</h4>
-            <p>The spec folder is the single source of truth for the language, framework, benchmarks, and startup readiness model.</p>
-          </article>
-          <article class="doc-card accent-card">
-            <div class="doc-card-icon">VX</div>
-            <h4>Build with confidence</h4>
-            <p>The docs are meant to be operational, not decorative. Every guide should help you ship a real page or feature faster.</p>
-          </article>
+    <section class="docs-story-grid">
+      <aside class="docs-rail">
+        <div class="rail-card">
+          <span class="rail-heading">Start</span>
+          <a href="/quickstart" class="docs-link">Quickstart</a>
+          <a href="/why" class="docs-link">Why Velox</a>
+          <a href="/benchmarks" class="docs-link">Benchmarks</a>
         </div>
+        <div class="rail-card">
+          <span class="rail-heading">Core documents</span>
+          <a href="https://github.com/lakesbim/velox/blob/main/spec/MASTER_SPEC.md" class="docs-link">Master spec</a>
+          <a href="https://github.com/lakesbim/velox/blob/main/spec/docs-index.json" class="docs-link">Docs index</a>
+          <a href="https://github.com/lakesbim/velox/blob/main/spec/startup/README.md" class="docs-link">Startup pack</a>
+        </div>
+      </aside>
+      <div class="docs-story-main">
+        <article class="chapter-card chapter-card-wide">
+          <p class="runway-chip">Reading order</p>
+          <h3>Start with system shape, then syntax, then shipping.</h3>
+          <p>The right reading flow is not random. Understand the intent of the language, learn the compiler and framework boundaries, then move into startup-ready deployment and editor support.</p>
+        </article>
+        {#each keyAreas as item}
+          <article class="chapter-card">
+            <p class="runway-chip">Key area</p>
+            <h3>{item}</h3>
+            <p>This part of the Velox knowledge base exists because another builder should be able to continue the work without reverse engineering the repo.</p>
+          </article>
+        {/each}
+        <article class="chapter-card chapter-card-wide">
+          <p class="runway-chip">Why these docs matter</p>
+          <h3>If the docs are weak, the language is weak.</h3>
+          <p>An AI-native language cannot hide behind incomplete docs. Every important surface needs to be explicit enough that a model can build, verify, and reason from first principles.</p>
+        </article>
       </div>
     </section>
   }

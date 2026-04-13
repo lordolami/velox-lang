@@ -1,0 +1,29 @@
+component AboutPage() {
+  render {
+    <section class="about-hero">
+      <div class="about-copy">
+        <p class="page-kicker">About the Devs</p>
+        <h1 class="page-headline">Built by Lakesbim Infotechnology with an obsession for speed, clarity, and serious frontend craft.</h1>
+        <p class="page-intro">Velox is not being built as an academic exercise. It is being shaped as the language and framework foundation for real products, AI-native workflows, and a startup-grade frontend platform.</p>
+      </div>
+    </section>
+
+    <section class="about-grid">
+      <article class="about-card popup-card">
+        <p class="runway-chip">Who is behind it</p>
+        <h3>Lakesbim Infotechnology</h3>
+        <p>A product-minded team building Velox as both a language ecosystem and a practical engine for shipping standout interfaces.</p>
+      </article>
+      <article class="about-card popup-card">
+        <p class="runway-chip">What we care about</p>
+        <h3>Performance, elegance, and AI-native ergonomics.</h3>
+        <p>The goal is not to mimic existing frontend stacks. The goal is to build a better one that feels smaller, faster, and easier to teach another model.</p>
+      </article>
+      <article class="about-card popup-card about-card-wide">
+        <p class="runway-chip">Why this matters</p>
+        <h3>The best way to prove the language is to build with it relentlessly.</h3>
+        <p>Velox is being forged through actual product requirements, benchmark pressure, deploy constraints, editor tooling, and the ambition to build a serious startup frontend on top of it.</p>
+      </article>
+    </section>
+  }
+}

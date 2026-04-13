@@ -4,55 +4,68 @@ component QuickstartPage(data) {
   ~checkScope = data.checkScope
 
   render {
-    <section class="page-section narrow">
-      <p class="eyebrow">Quickstart</p>
-      <h1 class="page-title">From blank repo to working Velox app without framework drama.</h1>
-      <p class="page-lead">This is the shortest path to a real result. The current readiness command is <code>{checkCommand}</code> and it verifies {checkScope}.</p>
+    <section class="launch-hero">
+      <div class="launch-copy">
+        <p class="page-kicker">Quickstart</p>
+        <h1 class="page-headline">The first fifteen minutes should feel electric, not administrative.</h1>
+        <p class="page-intro">Velox is supposed to get you from blank workspace to meaningful output with very little drag. The key verification command is <code>{checkCommand}</code> and it validates {checkScope}.</p>
+      </div>
+      <div class="launch-popup popup-card">
+        <span>Goal</span>
+        <strong>Get a real app running fast enough that you want to keep going.</strong>
+      </div>
+    </section>
 
-      <div class="qs-steps">
-        <article class="qs-step">
+    <section class="launch-grid">
+      <div class="timeline-shell">
+        <article class="timeline-row">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h4>Clone or create a workspace</h4>
-            <p>Start inside a clean project folder so the compiler, examples, and docs can live together from day one.</p>
+            <h4>Clone the workspace</h4>
+            <p>Start in a clean project folder so the compiler, examples, and docs live together from day one.</p>
             <div class="step-code">git clone https://github.com/lakesbim/velox.git</div>
           </div>
         </article>
-        <article class="qs-step">
+        <article class="timeline-row">
           <div class="step-num">2</div>
           <div class="step-content">
             <h4>Install dependencies</h4>
-            <p>Velox runs on a normal TypeScript toolchain, which keeps the setup legible and easy to contribute to.</p>
+            <p>Velox is built in TypeScript, which keeps the core toolchain easy to inspect and extend.</p>
             <div class="step-code">npm install</div>
           </div>
         </article>
-        <article class="qs-step">
+        <article class="timeline-row">
           <div class="step-num">3</div>
           <div class="step-content">
             <h4>Build the compiler</h4>
-            <p>Compile the TypeScript codebase so the CLI and framework pieces are ready to generate output.</p>
+            <p>Compile the source so the CLI and framework pieces are ready to generate deployable output.</p>
             <div class="step-code">npm run build</div>
           </div>
         </article>
-        <article class="qs-step">
+        <article class="timeline-row">
           <div class="step-num">4</div>
           <div class="step-content">
             <h4>Run the readiness gate</h4>
-            <p>This is the best single command for confirming the whole product is in a shape you can build on confidently.</p>
+            <p>This confirms the current system is in a trustworthy state before you start building on top of it.</p>
             <div class="step-code">{checkCommand}</div>
           </div>
         </article>
-        <article class="qs-step">
-          <div class="step-num">5</div>
-          <div class="step-content">
-            <h4>Use the reference examples</h4>
-            <p>The current starter flow is grounded in these steps:</p>
-            <ul class="inline-list">
-              {#each steps as item}
-                <li>{item}</li>
-              {/each}
-            </ul>
-          </div>
+      </div>
+
+      <div class="launch-side">
+        <article class="launch-panel">
+          <p class="runway-chip">Starter flow</p>
+          <h3>What happens next</h3>
+          <ul class="inline-list">
+            {#each steps as item}
+              <li>{item}</li>
+            {/each}
+          </ul>
+        </article>
+        <article class="launch-panel popup-card">
+          <p class="runway-chip">Mindset</p>
+          <h3>Build the first real thing early.</h3>
+          <p>The fastest way to improve the language is to let it carry an actual interface, not just isolated syntax examples.</p>
         </article>
       </div>
     </section>

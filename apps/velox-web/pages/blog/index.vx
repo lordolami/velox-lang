@@ -6,24 +6,33 @@ component BlogIndexPage(data) {
   ~updatedAt = data.updatedAt
 
   render {
-    <section class="page-section narrow">
-      <p class="eyebrow">Blog</p>
-      <h1 class="page-title">Build notes, roadmap signals, and proof that Velox is moving.</h1>
-      <p class="page-lead">These entries track the language and framework as they get closer to being the thing you can build a startup on.</p>
+    <section class="editorial-hero">
+      <div class="editorial-copy">
+        <p class="page-kicker">Journal</p>
+        <h1 class="page-headline">Build notes, roadmap signals, and the story of turning Velox into a real platform.</h1>
+        <p class="page-intro">This section is where the language stops being an abstract pitch and starts sounding like an actual company with a point of view.</p>
+      </div>
+    </section>
 
-      <div class="blog-grid">
-        <a href="/blog/v1-status" class="blog-card">
-          <p class="blog-date">{updatedAt}</p>
-          <h3>{statusTitle}</h3>
-          <p>{statusSummary}</p>
-          <span class="blog-link">Read update</span>
-        </a>
-        <a href="/blog/compiler-roadmap" class="blog-card">
+    <section class="editorial-grid">
+      <a href="/blog/v1-status" class="editorial-feature popup-card">
+        <p class="blog-date">{updatedAt}</p>
+        <h2>{statusTitle}</h2>
+        <p>{statusSummary}</p>
+        <span class="blog-link">Read update</span>
+      </a>
+      <div class="editorial-side">
+        <a href="/blog/compiler-roadmap" class="blog-card popup-card">
           <p class="blog-date">{updatedAt}</p>
           <h3>{roadmapTitle}</h3>
           <p>{roadmapSummary}</p>
           <span class="blog-link">Read roadmap</span>
         </a>
+        <article class="blog-card popup-card">
+          <p class="runway-chip">What belongs here</p>
+          <h3>Benchmarks, releases, startup milestones, and framework decisions.</h3>
+          <p>The journal should become part technical log, part founder narrative, and part proof that Velox keeps moving forward.</p>
+        </article>
       </div>
     </section>
   }

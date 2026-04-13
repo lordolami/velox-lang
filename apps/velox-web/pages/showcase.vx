@@ -4,61 +4,59 @@ component ShowcasePage(data) {
   ~sourceRoot = data.sourceRoot
 
   render {
-    <section class="page-section">
-      <p class="eyebrow">Showcase</p>
-      <h1 class="page-title">Reference apps that prove the language can carry real product work.</h1>
-      <p class="page-lead">{summary} The current set tracks {appCount} showcase apps under {sourceRoot}.</p>
-
-      <div class="showcase-grid">
-        <article class="show-card">
-          <div class="show-preview preview-one"></div>
-          <div class="show-info">
-            <h4>Starter counter</h4>
-            <p>The smallest proof that reactive state, events, and render blocks stay readable.</p>
-            <span class="show-tag">starter</span>
-          </div>
-        </article>
-        <article class="show-card">
-          <div class="show-preview preview-two"></div>
-          <div class="show-info">
-            <h4>Todo application</h4>
-            <p>Stateful lists, filters, and persistence with a simpler mental model than typical JSX-heavy setups.</p>
-            <span class="show-tag">product pattern</span>
-          </div>
-        </article>
-        <article class="show-card">
-          <div class="show-preview preview-three"></div>
-          <div class="show-info">
-            <h4>Dashboard benchmark</h4>
-            <p>A data-heavy surface used to keep the framework honest on rendering and build performance.</p>
-            <span class="show-tag">performance</span>
-          </div>
-        </article>
-        <article class="show-card">
-          <div class="show-preview preview-four"></div>
-          <div class="show-info">
-            <h4>Velox web app</h4>
-            <p>The site you are looking at. It is part product surface, part framework integration proof.</p>
-            <span class="show-tag">self-hosted</span>
-          </div>
-        </article>
-        <article class="show-card ghost-card">
-          <div class="show-preview preview-five"></div>
-          <div class="show-info">
-            <h4>Your startup frontend</h4>
-            <p>The real target is not the demo grid. It is the product we can build next with the same language.</p>
-            <span class="show-tag">next</span>
-          </div>
-        </article>
-        <article class="show-card ghost-card">
-          <div class="show-preview preview-six"></div>
-          <div class="show-info">
-            <h4>More coming</h4>
-            <p>Each new reference app should raise the bar for what Velox can express cleanly and ship quickly.</p>
-            <span class="show-tag">roadmap</span>
-          </div>
-        </article>
+    <section class="showcase-hero-premium">
+      <div class="showcase-copy">
+        <p class="page-kicker">Showcase</p>
+        <h1 class="page-headline">Reference apps, product patterns, and proof that Velox is meant to be used.</h1>
+        <p class="page-intro">{summary} The current showcase tracks {appCount} apps under {sourceRoot}, but the real destination is the startup frontend we are building next.</p>
       </div>
+      <div class="showcase-popup popup-card">
+        <span>Reference set</span>
+        <strong>Starter apps, data-heavy examples, and the Velox marketing site itself.</strong>
+      </div>
+    </section>
+
+    <section class="case-study-grid">
+      <article class="case-card case-card-wide">
+        <div class="show-preview preview-four"></div>
+        <div class="show-info">
+          <p class="runway-chip">Self-hosted proof</p>
+          <h3>Velox website</h3>
+          <p>The language should be confident enough to build its own flagship frontend, not just compile toy examples.</p>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="show-preview preview-one"></div>
+        <div class="show-info">
+          <p class="runway-chip">Starter</p>
+          <h3>Counter</h3>
+          <p>The smallest proof that state, events, and rendering stay readable.</p>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="show-preview preview-two"></div>
+        <div class="show-info">
+          <p class="runway-chip">Product pattern</p>
+          <h3>Todo application</h3>
+          <p>Lists, filtering, persistence, and a calmer component model than the usual boilerplate-heavy route.</p>
+        </div>
+      </article>
+      <article class="case-card">
+        <div class="show-preview preview-three"></div>
+        <div class="show-info">
+          <p class="runway-chip">Performance</p>
+          <h3>Dashboard benchmark</h3>
+          <p>A data-heavy surface used to keep the framework honest in live rendering scenarios.</p>
+        </div>
+      </article>
+      <article class="case-card ghost-card">
+        <div class="show-preview preview-five"></div>
+        <div class="show-info">
+          <p class="runway-chip">Next</p>
+          <h3>Your startup frontend</h3>
+          <p>The target is a real company-facing product surface, not just the current demo gallery.</p>
+        </div>
+      </article>
     </section>
   }
 }

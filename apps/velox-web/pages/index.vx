@@ -10,102 +10,127 @@ component HomePage(data) {
   ~docsCount = data.docsCount
 
   render {
-    <section class="hero">
-      <div class="hero-grid"></div>
-      <div class="hero-radial"></div>
-      <div class="hero-radial2"></div>
-      <div class="hero-radial3"></div>
-      <div class="hero-content">
-        <p class="hero-badge"><span class="badge-dot"></span> V1 is live with {testsPassed} passing tests</p>
-        <h1 class="hero-h1"><span class="grad">The frontend language<br></br>built to feel unfairly fast.</span></h1>
-        <p class="hero-sub">
-          Velox removes boilerplate, keeps the mental model tiny, and compiles directly to lean JavaScript and Wasm-ready fast paths.
+    <section class="mega-hero">
+      <div class="mega-copy">
+        <p class="hero-kicker">Velox Language System</p>
+        <h1 class="mega-title">A frontend language with the nerve to look, build, and ship differently.</h1>
+        <p class="mega-sub">
+          Velox is not another polite wrapper around the same frontend fatigue. It is a language, compiler, router, and framework surface designed together so the result feels sharper, lighter, and more direct than the usual stack.
         </p>
-        <div class="hero-actions">
-          <a href="/quickstart" class="btn-cta">Start building</a>
-          <a href="/docs" class="btn-outline">Read docs</a>
+        <div class="hero-actions left-actions">
+          <a href="/quickstart" class="btn-cta">Build with Velox</a>
+          <a href="/docs" class="btn-outline">Read the system</a>
         </div>
-        <div class="hero-term"><span class="term-arr">&gt;</span><span class="term-txt">velox build && velox deploy</span><span class="cursor"></span></div>
+        <div class="command-ribbon">
+          <span class="command-ribbon-label">Current signal</span>
+          <span>{testsPassed} tests green</span>
+          <span>{qualityGates} quality gates</span>
+          <span>{cloudTargets} deployment targets</span>
+        </div>
+      </div>
+
+      <div class="hero-stage">
+        <div class="stage-card stage-card-a popup-card">
+          <p class="stage-label">Compiler pulse</p>
+          <h3>{avgBuildMs}ms average build</h3>
+          <p>Short enough for fast idea loops. Stable enough for real delivery.</p>
+        </div>
+        <div class="stage-card stage-card-b popup-card">
+          <p class="stage-label">Runtime lane</p>
+          <h3>{speedup} average fast-path win</h3>
+          <p>Wasm-ready paths for expensive logic without turning the whole app into a lab experiment.</p>
+        </div>
+        <div class="stage-card stage-card-c popup-card">
+          <p class="stage-label">Knowledge surface</p>
+          <h3>{docsCount} indexed docs</h3>
+          <p>A system another AI can read, reason about, and actually build with.</p>
+        </div>
+        <div class="orbital-ring orbital-ring-a"></div>
+        <div class="orbital-ring orbital-ring-b"></div>
+        <div class="orbital-node orbital-node-a"></div>
+        <div class="orbital-node orbital-node-b"></div>
       </div>
     </section>
 
-    <section class="stats-bar">
-      <article class="stat"><div class="stat-n">{avgBuildMs}ms</div><div class="stat-l">average app build</div></article>
-      <article class="stat"><div class="stat-n">{speedup}</div><div class="stat-l">@fast average speedup</div></article>
-      <article class="stat"><div class="stat-n">{renderThroughput}</div><div class="stat-l">renders per second benchmark</div></article>
-      <article class="stat"><div class="stat-n">{docsCount}</div><div class="stat-l">spec and docs assets</div></article>
+    <section class="signal-band">
+      <article class="signal-card">
+        <span class="signal-name">Build loop</span>
+        <strong>{avgBuildMs}ms</strong>
+        <p>Average app build speed from the current measured suite.</p>
+      </article>
+      <article class="signal-card">
+        <span class="signal-name">Render pace</span>
+        <strong>{renderThroughput}</strong>
+        <p>App-level throughput measured beyond tiny synthetic kernels.</p>
+      </article>
+      <article class="signal-card">
+        <span class="signal-name">Verification date</span>
+        <strong>{benchmarkDate}</strong>
+        <p>Last verified through {checkName} instead of vague marketing claims.</p>
+      </article>
     </section>
 
-    <section class="section">
-      <p class="eyebrow">What makes it different</p>
-      <h2 class="sec-h2">All frontend. No framework tax.</h2>
-      <p class="sec-p">The language, router, compiler, and output model are designed together so speed is the default, not a rescue mission.</p>
-      <div class="feat-grid">
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">01</div>
-          <div class="feat-icon">~</div>
-          <h3>Reactive state in the syntax</h3>
-          <p>No hooks import. No setter ceremony. State is visible immediately and easy for both humans and AI systems to reason about.</p>
-          <span class="feat-chip">tilde state</span>
+    <section class="runway-section">
+      <div class="runway-intro">
+        <p class="runway-label">What makes it feel different</p>
+        <h2>Velox does less pretending and more actual frontend work.</h2>
+      </div>
+      <div class="runway-grid">
+        <article class="runway-card runway-card-wide">
+          <p class="runway-chip">Reactive syntax</p>
+          <h3>State is visible at first glance.</h3>
+          <p>No hook imports. No setter rituals. You can read a component and immediately see where the motion lives, which is exactly the kind of clarity AI tooling also benefits from.</p>
         </article>
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">02</div>
-          <div class="feat-icon">@</div>
-          <h3>Wasm where it matters</h3>
-          <p>Mark the heavy path with <code>@fast</code> and keep UI code clean while pushing compute-sensitive work into the optimized pipeline.</p>
-          <span class="feat-chip">fast path</span>
+        <article class="runway-card">
+          <p class="runway-chip">Fast path</p>
+          <h3>@fast is a lane, not a lifestyle.</h3>
+          <p>Use Wasm-ready acceleration where it matters instead of rebuilding your whole UI around performance superstition.</p>
         </article>
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">03</div>
-          <div class="feat-icon">#</div>
-          <h3>File routing built in</h3>
-          <p>Layouts, pages, dynamic routes, and data loaders are part of the product. There is less glue to write and less surface area to break.</p>
-          <span class="feat-chip">router core</span>
+        <article class="runway-card">
+          <p class="runway-chip">Routing core</p>
+          <h3>Pages, layouts, and loaders belong to the product.</h3>
+          <p>Routing conventions are part of the framework, so the happy path stays short and consistent.</p>
         </article>
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">04</div>
-          <div class="feat-icon">JS</div>
-          <h3>Tiny browser output</h3>
-          <p>Compile-time work happens ahead of the user. The result is smaller bundles, cleaner modules, and faster startup on real mobile networks.</p>
-          <span class="feat-chip">lean output</span>
-        </article>
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">05</div>
-          <div class="feat-icon">AI</div>
-          <h3>Friendly to code generation</h3>
-          <p>Velox syntax is intentionally direct. That makes docs clearer, prompts shorter, and generated code easier to trust and fix.</p>
-          <span class="feat-chip">AI native</span>
-        </article>
-        <article class="feat">
-          <div class="feat-glow"></div>
-          <div class="feat-idx">06</div>
-          <div class="feat-icon">VX</div>
-          <h3>Launch-ready workflow</h3>
-          <p>{cloudTargets} cloud targets, {qualityGates} quality gates, and a reproducible deployment path verified on {benchmarkDate} through {checkName}.</p>
-          <span class="feat-chip">shipping flow</span>
+        <article class="runway-card">
+          <p class="runway-chip">AI readable</p>
+          <h3>The docs are part of the design.</h3>
+          <p>If humans and models cannot understand the language quickly, the language is not ready. Velox treats explainability like a feature.</p>
         </article>
       </div>
     </section>
 
-    <section class="code-section">
-      <div class="code-bg"></div>
-      <p class="eyebrow">Language in motion</p>
-      <h2 class="sec-h2">Readable source. Serious output.</h2>
-      <p class="sec-p">Velox keeps the authoring experience calm while still leaving room for performance-sensitive work.</p>
-      <div class="code-container">
-        <div class="code-hd">
-          <div class="code-tab-btn on">counter.vx</div>
-          <div class="code-tab-btn">compiled.js</div>
+    <section class="syntax-theater">
+      <div class="syntax-copy">
+        <p class="runway-label">Language preview</p>
+        <h2>Readable enough for your team. Structured enough for your AI pipeline.</h2>
+        <p>
+          The real gain is not fewer characters. It is a grammar that points directly at intent: state, render flow, route boundaries, and fast lanes.
+        </p>
+        <div class="theater-notes">
+          <div>
+            <span>01</span>
+            <p>Reactive state starts with a mark you can spot instantly.</p>
+          </div>
+          <div>
+            <span>02</span>
+            <p>Components, layouts, loaders, and routes tell one coherent story.</p>
+          </div>
+          <div>
+            <span>03</span>
+            <p>Specs stay compact enough that another model can actually learn the system.</p>
+          </div>
         </div>
-        <div class="code-2col">
-          <div class="code-col">
-            <div class="col-hd"><span>Velox component</span><span class="pill pill-vx">.vx</span></div>
-            <pre class="code-body"><span class="kw">component</span> <span class="fn">Counter</span>(<span class="at">label</span>)
+      </div>
+      <div class="syntax-panel depth-panel-large">
+        <div class="code-container">
+          <div class="code-hd">
+            <div class="code-tab-btn on">counter.vx</div>
+            <div class="code-tab-btn">compiled.js</div>
+          </div>
+          <div class="code-2col">
+            <div class="code-col">
+              <div class="col-hd"><span>Velox component</span><span class="pill pill-vx">.vx</span></div>
+              <pre class="code-body"><span class="kw">component</span> <span class="fn">Counter</span>(<span class="at">label</span>)
   <span class="rx">~</span><span class="at">count</span> = <span class="nm">0</span>
 
   <span class="kw">render</span>
@@ -116,10 +141,10 @@ component HomePage(data) {
         Add
       &lt;/<span class="tg">button</span>&gt;
     &lt;/<span class="tg">section</span>&gt;</pre>
-          </div>
-          <div class="code-col">
-            <div class="col-hd"><span>Output shape</span><span class="pill pill-js">esm</span></div>
-            <pre class="code-body"><span class="kw">let</span> <span class="at">count</span> = <span class="nm">0</span>;
+            </div>
+            <div class="code-col">
+              <div class="col-hd"><span>Output shape</span><span class="pill pill-js">esm</span></div>
+              <pre class="code-body"><span class="kw">let</span> <span class="at">count</span> = <span class="nm">0</span>;
 
 <span class="kw">function</span> <span class="fn">renderCounter</span>()
   <span class="kw">return</span> <span class="str">"section.card ..."</span>;
@@ -132,47 +157,50 @@ component HomePage(data) {
 <span class="kw">function</span> <span class="fn">increment</span>()
   count += <span class="nm">1</span>;
   <span class="fn">mount</span>(root);</pre>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="bench-section">
-      <p class="eyebrow">Performance</p>
-      <h2 class="sec-h2">Fast enough to feel different.</h2>
-      <p class="sec-p">Real project numbers matter more than slogans, so the Velox site keeps benchmark context visible.</p>
-      <div class="bench-grid">
-        <article class="bench-card glow">
-          <div class="bench-lbl">App build speed</div>
-          <div class="metric-big">{avgBuildMs}ms</div>
-          <p class="metric-copy">Average measured app build time from the current benchmark suite.</p>
+    <section class="depth-metrics">
+      <div class="depth-copy">
+        <p class="runway-label">Proof, not posture</p>
+        <h2>There is a difference between a fast demo and a fast system.</h2>
+        <p>Velox keeps benchmark context close to the product story because speed claims without methodology become frontend mythology very quickly.</p>
+      </div>
+      <div class="depth-grid">
+        <article class="depth-panel popup-card">
+          <span class="depth-value">{avgBuildMs}ms</span>
+          <h3>Average build speed</h3>
+          <p>Short enough for preview-driven design and AI iteration without dead air.</p>
         </article>
-        <article class="bench-card">
-          <div class="bench-lbl">Render throughput</div>
-          <div class="metric-big">{renderThroughput}</div>
-          <p class="metric-copy">Average renders per second across the current app-level performance pass.</p>
+        <article class="depth-panel popup-card">
+          <span class="depth-value">{renderThroughput}</span>
+          <h3>Render throughput</h3>
+          <p>Measured at app level so the data speaks to real product behavior.</p>
         </article>
-        <article class="bench-card">
-          <div class="bench-lbl">Docs and spec coverage</div>
-          <div class="metric-big">{docsCount}</div>
-          <p class="metric-copy">Indexed specs, guides, and startup assets that AI systems can read directly.</p>
+        <article class="depth-panel popup-card">
+          <span class="depth-value">{docsCount}</span>
+          <h3>AI-readable assets</h3>
+          <p>Specs, guides, and startup references designed to be learned, not just skimmed.</p>
         </article>
-        <article class="bench-card glow">
-          <div class="bench-lbl">Quality gates</div>
-          <div class="metric-big">{qualityGates}</div>
-          <p class="metric-copy">Compiler, framework, deploy, LSP, and readiness checks passing together.</p>
+        <article class="depth-panel popup-card">
+          <span class="depth-value">{qualityGates}</span>
+          <h3>Quality gates</h3>
+          <p>Compiler, framework, deploy, editor, and readiness checks held together in one flow.</p>
         </article>
       </div>
     </section>
 
-    <section class="cta-band">
+    <section class="cta-band flagship-band">
       <div class="cta-card">
-        <p class="eyebrow left">Ready to ship</p>
-        <h2 class="cta-title"><span class="grad">Build the frontend that proves Velox.</span></h2>
-        <p class="cta-copy">Start with quickstart, read the docs, then use the showcase and blog as working reference material.</p>
+        <p class="runway-label">Use it like you mean it</p>
+        <h2 class="cta-title">Build the frontend that makes Velox impossible to ignore.</h2>
+        <p class="cta-copy">Study the docs, read the benchmark methodology, then use Velox itself to build the product that proves the system belongs in the real world.</p>
         <div class="hero-actions left-actions">
           <a href="/quickstart" class="btn-cta">Open quickstart</a>
-          <a href="/showcase" class="btn-outline">See examples</a>
+          <a href="/showcase" class="btn-outline">See reference apps</a>
         </div>
       </div>
     </section>

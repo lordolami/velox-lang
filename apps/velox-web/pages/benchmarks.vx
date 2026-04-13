@@ -9,52 +9,58 @@ component BenchmarksPage(data) {
   ~sourceReport = data.sourceReport
 
   render {
-    <section class="page-section">
-      <p class="eyebrow">Benchmarks</p>
-      <h1 class="page-title">Real app numbers, not vibes.</h1>
-      <p class="page-lead">These measurements were last updated on {measuredAt} from {sourceReport}. They describe the current Velox baseline, not a fantasy benchmark.</p>
+    <section class="bench-hero-premium">
+      <div class="bench-hero-copy">
+        <p class="page-kicker">Benchmarks</p>
+        <h1 class="page-headline">Performance only matters when it survives contact with a real app.</h1>
+        <p class="page-intro">These numbers were last updated on {measuredAt} using {sourceReport}. They are here to explain the system, not flatter it.</p>
+      </div>
+      <div class="bench-hero-popup popup-card">
+        <span>Method</span>
+        <strong>Measure bundle size, build pace, and app-level rendering, then keep the report close to the product story.</strong>
+      </div>
+    </section>
 
-      <div class="bench-grid">
-        <article class="bench-card glow">
-          <div class="bench-lbl">Bundle size</div>
-          <div class="bench-pair">
-            <div>
-              <p class="bench-name">React baseline</p>
-              <div class="metric-big">{reactBundleKb}kb</div>
-            </div>
-            <div>
-              <p class="bench-name">Velox output</p>
-              <div class="metric-big accent">{veloxBundleKb}kb</div>
-            </div>
-          </div>
-          <p class="metric-copy">The gap is what users feel first: less framework code before your app even begins.</p>
+    <section class="bench-board">
+      <article class="meter-card">
+        <span class="meter-label">Bundle weight</span>
+        <div class="meter-row"><strong>{reactBundleKb}kb</strong><span>React baseline</span></div>
+        <div class="meter-row accent-row"><strong>{veloxBundleKb}kb</strong><span>Velox output</span></div>
+      </article>
+      <article class="meter-card">
+        <span class="meter-label">Fast lane range</span>
+        <div class="meter-row accent-row"><strong>{fastAverageSpeedup}</strong><span>Average @fast gain</span></div>
+        <div class="meter-row"><strong>{fastWorstSpeedup}</strong><span>Worst measured case</span></div>
+      </article>
+      <article class="meter-card">
+        <span class="meter-label">Compiler speed</span>
+        <div class="meter-row accent-row"><strong>{appAvgBuildMs}ms</strong><span>Average app build</span></div>
+        <p>Short feedback loops matter because they shape how quickly teams can refine product work.</p>
+      </article>
+      <article class="meter-card">
+        <span class="meter-label">Renderer output</span>
+        <div class="meter-row accent-row"><strong>{appAvgRendersPerSecond}</strong><span>Average throughput</span></div>
+        <p>App-level measurements matter more than a synthetic victory lap.</p>
+      </article>
+    </section>
+
+    <section class="method-river">
+      <div class="method-copy">
+        <p class="runway-label">How to read this page</p>
+        <h2>The point is not to win a chart. The point is to design a system that stays fast while growing up.</h2>
+      </div>
+      <div class="method-grid">
+        <article class="method-card">
+          <h3>Bundle reality</h3>
+          <p>Users feel size first. Every framework claim should start with what gets shipped before the product even becomes interactive.</p>
         </article>
-
-        <article class="bench-card">
-          <div class="bench-lbl">@fast speedup window</div>
-          <div class="bench-pair">
-            <div>
-              <p class="bench-name">Average</p>
-              <div class="metric-big accent">{fastAverageSpeedup}</div>
-            </div>
-            <div>
-              <p class="bench-name">Worst</p>
-              <div class="metric-big">{fastWorstSpeedup}</div>
-            </div>
-          </div>
-          <p class="metric-copy">Wasm wins are measured where the workload actually deserves a faster path.</p>
+        <article class="method-card">
+          <h3>Build loop</h3>
+          <p>Fast builds change behavior. Teams iterate more aggressively when the compiler does not interrupt the design flow.</p>
         </article>
-
-        <article class="bench-card">
-          <div class="bench-lbl">Average app build</div>
-          <div class="metric-big">{appAvgBuildMs}ms</div>
-          <p class="metric-copy">Purpose-built compilation keeps iteration tight and the feedback loop short.</p>
-        </article>
-
-        <article class="bench-card glow">
-          <div class="bench-lbl">Average render throughput</div>
-          <div class="metric-big accent">{appAvgRendersPerSecond}</div>
-          <p class="metric-copy">App-level rendering benchmarks help keep the framework honest outside of micro-kernel tests.</p>
+        <article class="method-card">
+          <h3>App-level render work</h3>
+          <p>The rendering story only matters when components, routing, and data loading are moving together.</p>
         </article>
       </div>
     </section>
