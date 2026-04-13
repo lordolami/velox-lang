@@ -1,0 +1,13 @@
+component WhyVeloxPage {
+  render {
+    <section>
+      <p class="eyebrow">Why Velox</p>
+      <h1>Build faster without framework overload.</h1>
+      <div class="grid three">
+        <article class="card"><h2>Language first</h2><p>Reactive syntax and template primitives are built in.</p></article>
+        <article class="card"><h2>Performance first</h2><p>Small runtime and optional @fast acceleration.</p></article>
+        <article class="card"><h2>AI first docs</h2><p>Machine indexed specs make generation reliable.</p></article>
+      </div>
+    </section>
+  }
+}

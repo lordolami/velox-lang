@@ -1,0 +1,18 @@
+component ShowcasePage(data) {
+  ~summary = data.summary
+
+  render {
+    <section>
+      <p class="eyebrow">Showcase</p>
+      <h1>Apps built with Velox.</h1>
+      <p>{summary}</p>
+
+      <div class="grid two">
+        <article class="card"><h2>Todo App</h2><p>Reactive state and local interactions.</p></article>
+        <article class="card"><h2>Dashboard</h2><p>Routing, data modules, and layout composition.</p></article>
+        <article class="card"><h2>Landing Site</h2><p>Fast static output for marketing pages.</p></article>
+        <article class="card"><h2>Interop Demo</h2><p>External API and package integration flow.</p></article>
+      </div>
+    </section>
+  }
+}

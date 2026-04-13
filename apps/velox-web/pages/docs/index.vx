@@ -1,0 +1,26 @@
+component DocsIndexPage {
+  render {
+    <section>
+      <p class="eyebrow">Docs</p>
+      <h1>Everything needed to build with Velox.</h1>
+      <div class="grid two">
+        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/MASTER_SPEC.md" class="card linkcard" target="_blank">
+          <h2>Master Spec</h2>
+          <p>Language contract and runtime behavior.</p>
+        </a>
+        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/framework-v1.md" class="card linkcard" target="_blank">
+          <h2>Framework Spec</h2>
+          <p>Routing, layout, data, and boundaries.</p>
+        </a>
+        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/quickstart.md" class="card linkcard" target="_blank">
+          <h2>Quickstart Doc</h2>
+          <p>First app flow from init to deploy.</p>
+        </a>
+        <a href="https://github.com/lordolami/velox-lang/blob/main/spec/diagnostics.md" class="card linkcard" target="_blank">
+          <h2>Diagnostics</h2>
+          <p>Error catalog with stable diagnostic codes.</p>
+        </a>
+      </div>
+    </section>
+  }
+}

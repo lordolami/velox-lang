@@ -1,0 +1,21 @@
+component QuickstartPage {
+  render {
+    <section>
+      <p class="eyebrow">Quickstart</p>
+      <h1>Build your first Velox app.</h1>
+      <ol>
+        <li>Initialize a new project.</li>
+        <li>Create pages with vx files.</li>
+        <li>Build and preview output.</li>
+        <li>Deploy with a cloud target bundle.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Starter file</h2>
+      <pre>component Home(title)
+state count starts at zero
+render shows title and count</pre>
+    </section>
+  }
+}

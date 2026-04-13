@@ -1,0 +1,37 @@
+component HomePage {
+  render {
+    <section class="hero">
+      <p class="eyebrow">Velox Language</p>
+      <h1>Frontend language for speed and clarity.</h1>
+      <p>
+        Velox keeps syntax simple, moves heavy work to @fast, and ships tiny output for fast user experience.
+      </p>
+      <div class="actions">
+        <a href="/quickstart" class="btn">Start with quickstart</a>
+        <a href="/docs" class="btn ghost">Read docs</a>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <article class="card">
+        <h2>Simple syntax</h2>
+        <p>Reactive state starts with tilde. Components are one block.</p>
+        <pre>component Counter(label)
+state uses tilde
+render outputs bindings</pre>
+      </article>
+      <article class="card">
+        <h2>Fast path</h2>
+        <p>@fast functions compile to Wasm oriented output for compute heavy logic.</p>
+        <pre>@fast add(a: i32, b: i32) -> i32
+return a + b</pre>
+      </article>
+    </section>
+
+    <section class="grid three">
+      <article class="card"><h3>186 tests passing</h3><p>Core language and framework gates are green.</p></article>
+      <article class="card"><h3>Cloud deploy bundles</h3><p>Vercel, Netlify, and Cloudflare Pages ready.</p></article>
+      <article class="card"><h3>AI readable docs</h3><p>Machine indexed docs support AI generation workflows.</p></article>
+    </section>
+  }
+}

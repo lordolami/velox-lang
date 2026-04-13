@@ -1,0 +1,26 @@
+component BlogPostPage(data, params, pathname) {
+  ~title = data.title
+  ~author = data.author
+  ~date = data.date
+  ~summary = data.summary
+  ~content = data.content
+  ~points = data.points
+
+  render {
+    <article>
+      <p class="eyebrow">Blog Post</p>
+      <h1>{title}</h1>
+      <p class="meta">Author: {author}</p>
+      <p class="meta">Date: {date}</p>
+      <p>{summary}</p>
+      <p>{content}</p>
+      <h2>Key points</h2>
+      <ul>
+        {#each points as item}
+          <li>{item}</li>
+        {/each}
+      </ul>
+      <p><a href="/blog">Back to blog</a></p>
+    </article>
+  }
+}

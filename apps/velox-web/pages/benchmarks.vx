@@ -1,0 +1,28 @@
+import { speed_ratio, bundle_delta } from "../utils.vx"
+
+component BenchmarksPage {
+  ~jsBundle = 142
+  ~veloxBundle = 4
+  ~speedup = speed_ratio(72, 10)
+  ~saved = bundle_delta(jsBundle, veloxBundle)
+
+  render {
+    <section>
+      <p class="eyebrow">Benchmarks</p>
+      <h1>Measured performance with reproducible gates.</h1>
+      <div class="grid two">
+        <article class="card">
+          <h2>Bundle size delta</h2>
+          <p>React baseline kb: {jsBundle}</p>
+          <p>Velox app kb: {veloxBundle}</p>
+          <p>Saved kb: {saved}</p>
+        </article>
+        <article class="card">
+          <h2>Wasm speed ratio</h2>
+          <p>Sample speed ratio: {speedup}x</p>
+          <p>Use @fast for compute heavy kernels.</p>
+        </article>
+      </div>
+    </section>
+  }
+}

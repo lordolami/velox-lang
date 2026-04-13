@@ -1,0 +1,24 @@
+import "../styles/global.css"
+
+component SiteLayout(content, pathname) {
+  render {
+    <div class="site-shell">
+      <header class="topbar">
+        <a href="/" class="brand">Velox</a>
+        <nav class="topnav">
+          <a href="/quickstart">Quickstart</a>
+          <a href="/docs">Docs</a>
+          <a href="/why">Why Velox</a>
+          <a href="/benchmarks">Benchmarks</a>
+          <a href="/showcase">Showcase</a>
+          <a href="/blog">Blog</a>
+          <a href="/ai-build">AI Build</a>
+        </nav>
+      </header>
+      <main class="page">{content}</main>
+      <footer class="footer">
+        <p>Velox compiles vx files to JavaScript and Wasm ready output.</p>
+      </footer>
+    </div>
+  }
+}

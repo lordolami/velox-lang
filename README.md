@@ -75,6 +75,10 @@ Three production-style demo apps live in `examples/showcase`:
 - `examples/showcase/dashboard/pages`
 - `examples/showcase/landing/pages`
 
+Official Velox site app (Velox-on-Velox) now lives in:
+
+- `apps/velox-web/pages`
+
 Build one app:
 
 ```bash

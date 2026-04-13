@@ -1,0 +1,18 @@
+component BlogIndexPage {
+  render {
+    <section>
+      <p class="eyebrow">Blog</p>
+      <h1>Release notes and engineering updates.</h1>
+      <div class="grid two">
+        <a href="/blog/v1-status" class="card linkcard">
+          <h2>Velox v1 status update</h2>
+          <p>What is complete and what is next.</p>
+        </a>
+        <a href="/blog/compiler-roadmap" class="card linkcard">
+          <h2>Compiler roadmap for v3</h2>
+          <p>SSR and SSG progression plan.</p>
+        </a>
+      </div>
+    </section>
+  }
+}

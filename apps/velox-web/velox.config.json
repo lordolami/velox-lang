@@ -1,0 +1,26 @@
+{
+  "build": {
+    "outDir": "dist",
+    "copyPublic": true,
+    "router": {
+      "enabled": true,
+      "title": "Velox"
+    }
+  },
+  "dev": {
+    "outDir": "dist-dev",
+    "port": 4010,
+    "open": false,
+    "copyPublic": true,
+    "router": {
+      "enabled": true,
+      "title": "Velox Dev"
+    }
+  },
+  "deploy": {
+    "target": "vercel",
+    "appName": "velox-web",
+    "buildOutDir": "dist",
+    "outputDir": ".velox/deployments"
+  }
+}
