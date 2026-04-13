@@ -1,0 +1,11 @@
+@fast p3(n: i32) -> i32 {
+ let i=1
+ let x=1
+ while i<n {
+  x = x + (i * 31)
+  x = x - (i * 13)
+  x = x + (i * 7)
+  i = i + 1
+ }
+ return x
+}

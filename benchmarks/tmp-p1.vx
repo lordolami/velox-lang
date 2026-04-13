@@ -1,0 +1,13 @@
+@fast p1(n: i32) -> i32 {
+ let i=1
+ let a=0
+ let b=1
+ let c=2
+ while i<n {
+  a = a + (i * 5)
+  b = b + (i * 7)
+  c = c + (i * 11)
+  i = i + 1
+ }
+ return a + b + c
+}

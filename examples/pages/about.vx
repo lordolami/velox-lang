@@ -1,0 +1,12 @@
+component About {
+  render {
+    <section>
+      <h1>About Velox</h1>
+      <p>Velox compiles .vx to JavaScript with a built-in fast lane.</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/blog/routing">Blog Post</a>
+      </nav>
+    </section>
+  }
+}

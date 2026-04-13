@@ -1,0 +1,5 @@
+import { X } from "./dep.js"
+
+component Bad {
+  render { <p>x</p> }
+}

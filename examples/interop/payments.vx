@@ -1,0 +1,12 @@
+import { loadStripe } from "@stripe/stripe-js"
+
+component PaymentsDemo(onCheckout) {
+  ~label = "Checkout"
+  render {
+    <section>
+      <h1>Payments Integration</h1>
+      <p>Stripe package imported: @stripe/stripe-js</p>
+      <button on:click={onCheckout}>{label}</button>
+    </section>
+  }
+}

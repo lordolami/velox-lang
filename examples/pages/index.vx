@@ -1,0 +1,16 @@
+component Home(data) {
+  render {
+    <section>
+      <h1>Velox Pages Router</h1>
+      <p>This is the home page.</p>
+      <p>{data}</p>
+      <nav>
+        <a href="/about">About</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/private">Private Redirect</a>
+        <a href="/blog/hello-velox">Blog Post</a>
+        <a href="/does-not-exist">404 Demo</a>
+      </nav>
+    </section>
+  }
+}

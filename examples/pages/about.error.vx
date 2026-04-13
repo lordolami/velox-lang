@@ -1,0 +1,10 @@
+component AboutError(error, pathname) {
+  render {
+    <section>
+      <h1>About Error</h1>
+      <p>{pathname}</p>
+      <p>{error}</p>
+      <a href="/">Back Home</a>
+    </section>
+  }
+}

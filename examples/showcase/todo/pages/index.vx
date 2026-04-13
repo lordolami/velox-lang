@@ -1,0 +1,11 @@
+component TodoHome(data, onAdd) {
+  ~title = "Today"
+  render {
+    <section>
+      <h2>{title}</h2>
+      <p>Plan, prioritize, ship.</p>
+      <ul>{#each data as task, i}<li>{i}: {task}</li>{/each}</ul>
+      <button on:click={onAdd}>Add Task</button>
+    </section>
+  }
+}

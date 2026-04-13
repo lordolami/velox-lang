@@ -1,0 +1,9 @@
+component Home {
+  render {
+    <section>
+      <h1>Welcome to Velox</h1>
+      <p>Start building from pages/index.vx.</p>
+      <a href="/about">About page</a>
+    </section>
+  }
+}

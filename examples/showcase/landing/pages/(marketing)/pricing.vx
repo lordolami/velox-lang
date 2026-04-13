@@ -1,0 +1,12 @@
+component PricingPage {
+  render {
+    <section>
+      <h2>Pricing</h2>
+      <ul>
+        <li>Starter: $0</li>
+        <li>Pro: $29</li>
+        <li>Scale: $199</li>
+      </ul>
+    </section>
+  }
+}

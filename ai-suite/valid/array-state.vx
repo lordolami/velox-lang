@@ -1,0 +1,4 @@
+component Tags {
+  ~items = [1, 2, 3]
+  render { <p>{items}</p> }
+}

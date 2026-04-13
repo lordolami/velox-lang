@@ -1,0 +1,4 @@
+component Counter(label, inc) {
+  ~count = 0
+  render { <button on:click={inc}>{label}: {count}</button> }
+}

@@ -1,0 +1,8 @@
+component PrivateArea(data) {
+  render {
+    <section>
+      <h1>Private Area</h1>
+      <p>{data}</p>
+    </section>
+  }
+}

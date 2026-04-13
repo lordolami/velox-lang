@@ -1,0 +1,9 @@
+component About {
+  render {
+    <section>
+      <h1>About</h1>
+      <p>This app uses Velox pages router.</p>
+      <a href="/">Back Home</a>
+    </section>
+  }
+}

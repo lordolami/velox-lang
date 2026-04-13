@@ -1,0 +1,8 @@
+component ReportPage(pathname, data) {
+  render {
+    <article>
+      <h3>Report Path: {pathname}</h3>
+      <p>{data}</p>
+    </article>
+  }
+}

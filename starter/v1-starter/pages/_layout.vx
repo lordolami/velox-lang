@@ -1,0 +1,15 @@
+component RootLayout(content, pathname) {
+  render {
+    <div>
+      <header>
+        <strong>Velox App</strong>
+        <small>{pathname}</small>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+        </nav>
+      </header>
+      <main>{content}</main>
+    </div>
+  }
+}

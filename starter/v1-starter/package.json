@@ -1,0 +1,12 @@
+{
+  "name": "v1-starter",
+  "private": true,
+  "devDependencies": {
+    "@lakesbim/velox": "^0.18.0"
+  },
+  "scripts": {
+    "dev": "velox dev pages",
+    "build": "velox build pages -o dist",
+    "check": "velox check pages"
+  }
+}

@@ -1,0 +1,11 @@
+@fast arithSeries(n: i32) -> i32 {
+  let i = 0
+  let a = 0
+  let b = 0
+  while i < n {
+    a = a + i
+    b = b + (i * 3)
+    i = i + 1
+  }
+  return a + b
+}

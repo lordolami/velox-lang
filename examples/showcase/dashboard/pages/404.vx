@@ -1,0 +1,3 @@
+component DashboardNotFound {
+  render { <h2>Dashboard route missing</h2> }
+}

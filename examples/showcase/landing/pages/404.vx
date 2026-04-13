@@ -1,0 +1,3 @@
+component LandingNotFound {
+  render { <h2>Page not found</h2> }
+}

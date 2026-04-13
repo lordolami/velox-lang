@@ -1,0 +1,11 @@
+@fast arith3(n: i32) -> i32 {
+  let i = 1
+  let acc = 0
+  while i < n {
+    acc = acc + (i * i)
+    acc = acc + (i * 11)
+    acc = acc - (i * 3)
+    i = i + 1
+  }
+  return acc
+}

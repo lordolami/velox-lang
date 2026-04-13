@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-12",
+  "apps": {
+    "todo": {
+      "maxBuildMs": 1400,
+      "minRendersPerSecond": 250000,
+      "maxTotalKb": 40,
+      "minRoutes": 2
+    },
+    "dashboard": {
+      "maxBuildMs": 1400,
+      "minRendersPerSecond": 250000,
+      "maxTotalKb": 40,
+      "minRoutes": 2
+    },
+    "landing": {
+      "maxBuildMs": 1800,
+      "minRendersPerSecond": 250000,
+      "maxTotalKb": 40,
+      "minRoutes": 3
+    },
+    "core-pages": {
+      "maxBuildMs": 1800,
+      "minRendersPerSecond": 250000,
+      "maxTotalKb": 55,
+      "minRoutes": 5
+    }
+  },
+  "summary": {
+    "maxAvgBuildMs": 1400,
+    "minAvgRendersPerSecond": 250000
+  }
+}

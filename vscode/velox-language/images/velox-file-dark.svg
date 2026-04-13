@@ -1,0 +1,5 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Velox file icon">
+  <rect x="8" y="8" width="112" height="112" rx="16" fill="#2f81f7"/>
+  <path d="M22 8h62l36 36v60c0 8.8-7.2 16-16 16H24c-8.8 0-16-7.2-16-16V24C8 15.2 15.2 8 24 8h-2z" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="64" y="78" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" fill="#ffffff">VX</text>
+</svg>

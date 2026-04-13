@@ -1,0 +1,8 @@
+component HomePage {
+  render {
+    <main>
+      <h2>AI-native frontend in one language</h2>
+      <p>Design, compile, and deploy at startup speed.</p>
+    </main>
+  }
+}

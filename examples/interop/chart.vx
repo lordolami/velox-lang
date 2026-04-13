@@ -1,0 +1,13 @@
+import { Chart } from "chart.js/auto"
+
+component ChartDemo(title, mountChart) {
+  ~heading = title
+  render {
+    <section>
+      <h1>{heading}</h1>
+      <p>Chart package imported: chart.js/auto</p>
+      <button on:click={mountChart}>Mount Chart</button>
+      <canvas id="sales-chart"></canvas>
+    </section>
+  }
+}

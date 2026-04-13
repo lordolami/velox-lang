@@ -1,0 +1,8 @@
+component AboutLoading(pathname) {
+  render {
+    <section>
+      <h1>Loading About...</h1>
+      <p>{pathname}</p>
+    </section>
+  }
+}

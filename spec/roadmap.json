@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "product": "velox",
+  "updatedAt": "2026-04-12",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "Stabilize + Onboard",
+      "windowDays": "0-30",
+      "targets": [
+        "Freeze v1 grammar surface except bug fixes",
+        "Close top diagnostics clarity gaps",
+        "Harden router edge cases",
+        "Ship docs hub and framework spec"
+      ],
+      "kpis": {
+        "ci_main_pass_rate_min": 0.99,
+        "fresh_machine_quickstart_minutes_max": 15,
+        "external_non_trivial_demo_apps_min": 3
+      }
+    },
+    {
+      "id": "phase-2",
+      "name": "Adoption + Ecosystem",
+      "windowDays": "31-60",
+      "targets": [
+        "Publish stable npm and VS Code releases",
+        "Expand integration cookbook",
+        "Expand AI reliability corpus",
+        "Launch examples gallery"
+      ],
+      "kpis": {
+        "ai_suite_pass_rate_min": 0.98,
+        "github_stars_external_min": 25,
+        "community_templates_min": 5
+      }
+    },
+    {
+      "id": "phase-3",
+      "name": "Scale + Differentiation",
+      "windowDays": "61-90",
+      "targets": [
+        "Expand @fast numeric support",
+        "Reduce runtime overhead on large lists",
+        "Define SSR/SSG RFC and MVP",
+        "Run weekly canary and monthly stable releases"
+      ],
+      "kpis": {
+        "bench_fast_median_speedup_min": 2.5,
+        "p0_regression_free_days_min": 30
+      }
+    }
+  ],
+  "releaseGates": [
+    "npm run build",
+    "npm test",
+    "npm run bench:ai",
+    "npm run bench:fast"
+  ]
+}

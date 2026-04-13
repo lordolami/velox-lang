@@ -1,0 +1,10 @@
+export { compileFile, compileProject, checkProject } from "./compiler";
+export { startDevServer } from "./dev-server";
+export { lex } from "./lexer";
+export { parse } from "./parser";
+export { emitJavaScript } from "./codegen";
+export { collectFileRoutes, emitRouterHtml, emitRouterRuntimeModule } from "./router";
+export { loadVeloxConfig, resolveConfigPathValue } from "./config";
+export { deployLocalBuild, listLocalDeployments } from "./deploy";
+export { startPreviewServer } from "./preview-server";
+export { initProject } from "./scaffold";

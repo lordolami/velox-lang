@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-12",
+  "planWindow": {
+    "start": "2026-04-12",
+    "end": "2028-03-31"
+  },
+  "versions": [
+    {
+      "id": "v1",
+      "name": "Stable Core",
+      "window": { "start": "2026-04-12", "end": "2026-06-30" },
+      "status": "in_progress",
+      "mustShip": [
+        "stable compiler/runtime/router",
+        "npm package + vscode extension",
+        "docs + machine-readable index",
+        "build/test/ai/perf gates"
+      ],
+      "qualityGates": [
+        "npm run build",
+        "npm test",
+        "npm run bench:ai",
+        "npm run bench:fast",
+        "npm run bench:apps"
+      ],
+      "kpis": {
+        "ci_pass_rate_main_min": 0.99,
+        "fresh_machine_quickstart_minutes_max": 15,
+        "external_demo_apps_min": 3
+      }
+    },
+    {
+      "id": "v2",
+      "name": "Pro DX + Strong Types",
+      "window": { "start": "2026-07-01", "end": "2026-10-31" },
+      "status": "in_progress",
+      "mustShip": [
+        "property/index expressions",
+        "nested object/array inference",
+        "language server client/server split",
+        "cross-file definition/references/rename"
+      ],
+      "kpis": {
+        "lsp_response_ms_p50_max": 100,
+        "diagnostic_false_positive_rate_max": 0.02
+      }
+    },
+    {
+      "id": "v3",
+      "name": "Framework Maturity",
+      "window": { "start": "2026-11-01", "end": "2027-02-28" },
+      "status": "planned",
+      "mustShip": [
+        "SSR/SSG MVP",
+        "hydration contract",
+        "compile-time plugin hooks",
+        "expanded routing/data lifecycle"
+      ]
+    },
+    {
+      "id": "v4",
+      "name": "Cloud Platform",
+      "window": { "start": "2027-03-01", "end": "2027-06-30" },
+      "status": "planned",
+      "mustShip": [
+        "cloud deploy targets",
+        "preview URLs",
+        "deploy logs/status API",
+        "rollback support"
+      ],
+      "kpis": {
+        "preview_deploy_seconds_p50_max": 60,
+        "rollback_success_rate_min": 0.99
+      }
+    },
+    {
+      "id": "v5",
+      "name": "AI-Native Build Platform",
+      "window": { "start": "2027-07-01", "end": "2027-10-31" },
+      "status": "planned",
+      "mustShip": [
+        "stable AI compiler contracts",
+        "prompt-to-preview deterministic pipeline",
+        "feedback-to-training signal loop",
+        "expanded long-form AI reliability corpus"
+      ],
+      "kpis": {
+        "ai_suite_pass_rate_min": 0.98,
+        "prompt_to_preview_seconds_p50_max": 5
+      }
+    },
+    {
+      "id": "v6",
+      "name": "Full Completion",
+      "window": { "start": "2027-11-01", "end": "2028-03-31" },
+      "status": "planned",
+      "mustShip": [
+        "LTS policy and support windows",
+        "security/governance hardening",
+        "self-hosting guidance",
+        "enterprise readiness playbook"
+      ],
+      "kpis": {
+        "p0_regression_free_days_min": 90,
+        "enterprise_pilot_teams_min": 2
+      }
+    }
+  ],
+  "workstreams": [
+    "language-compiler",
+    "framework-runtime",
+    "tooling-editor-lsp",
+    "performance-benchmarks",
+    "cloud-deployment",
+    "ai-reliability",
+    "docs-adoption-governance"
+  ]
+}

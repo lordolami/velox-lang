@@ -1,0 +1,51 @@
+{
+  "name": "@lakesbim/velox",
+  "version": "0.18.0",
+  "description": "Velox language compiler (.vx -> JavaScript/WebAssembly-ready output)",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "spec/MASTER_SPEC.md",
+    "spec/v1.md",
+    "spec/quickstart.md"
+  ],
+  "bin": {
+    "velox": "dist/cli.js"
+  },
+  "scripts": {
+    "clean:dist": "node scripts/clean-dist.cjs",
+    "build": "npm run clean:dist && tsc -p tsconfig.build.json",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "bench:fast": "node benchmarks/run-fast-vs-js.cjs",
+    "bench:fast:gate": "node benchmarks/check-fast-regression.cjs",
+    "bench:apps": "node benchmarks/run-app-level-bench.cjs",
+    "bench:apps:gate": "node benchmarks/check-app-regression.cjs",
+    "bench:apps:report": "node benchmarks/generate-app-report.cjs",
+    "bench:ai": "node benchmarks/run-ai-reliability.cjs",
+    "lsp:smoke": "node vscode/velox-language/lsp/smoke-test.cjs",
+    "lsp:perf": "node vscode/velox-language/lsp/perf-test.cjs",
+    "lsp:gate": "npm run lsp:smoke && npm run lsp:perf",
+    "verify:quickstart": "node scripts/verify-quickstart.cjs",
+    "check:deterministic": "node scripts/check-deterministic-output.cjs",
+    "release:v1:check": "node scripts/release-v1-check.cjs",
+    "check:mega60": "tsx src/cli.ts check examples/mega60",
+    "build:mega60": "tsx src/cli.ts build examples/mega60 -o dist-mega60",
+    "prepack": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  }
+}

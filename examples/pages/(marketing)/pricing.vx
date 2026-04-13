@@ -1,0 +1,9 @@
+component Pricing {
+  render {
+    <section>
+      <h1>Pricing</h1>
+      <p>Route groups keep URLs clean.</p>
+      <a href="/">Back Home</a>
+    </section>
+  }
+}

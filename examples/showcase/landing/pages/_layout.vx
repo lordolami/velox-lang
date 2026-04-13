@@ -1,0 +1,16 @@
+component LandingLayout(content) {
+  render {
+    <div>
+      <header>
+        <h1>Velox Studio</h1>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+      {content}
+      <footer><small>Built with Velox</small></footer>
+    </div>
+  }
+}

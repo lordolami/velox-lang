@@ -1,0 +1,9 @@
+component TodoSettings(data, onSave) {
+  render {
+    <section>
+      <h2>Settings</h2>
+      <p>{data}</p>
+      <button on:click={onSave}>Save Preferences</button>
+    </section>
+  }
+}

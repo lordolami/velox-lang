@@ -1,0 +1,16 @@
+component Example33(label, items, onTap) {
+  ~count = 33
+  ~active = count > 0
+  render {
+    <section class="card">
+      <button on:click={onTap}>{label}: {count}</button>
+      {#if active}<p>active</p>{:else}<p>idle</p>{/if}
+      <ul>{#each items as item, i}<li>{i}:{item}</li>{/each}</ul>
+    </section>
+  }
+}
+
+@fast add33(a: i32, b: i32) -> i32 {
+  a + b
+}
+

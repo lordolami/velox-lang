@@ -1,0 +1,9 @@
+component ApiPage(data, retry) {
+  render {
+    <section>
+      <h1>External API Example</h1>
+      <p>{data}</p>
+      <button on:click={retry}>Retry</button>
+    </section>
+  }
+}
