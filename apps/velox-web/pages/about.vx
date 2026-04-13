@@ -1,14 +1,18 @@
 component AboutPage() {
   render {
-    <section class="about-hero">
+    <section class="about-hero about-hero-deep">
       <div class="about-copy">
-        <p class="page-kicker">About the Devs</p>
-        <h1 class="page-headline">Built by Lakesbim Infotechnology with an obsession for speed, clarity, and serious frontend craft.</h1>
-        <p class="page-intro">Velox is not being built as an academic exercise. It is being shaped as the language and framework foundation for real products, AI-native workflows, and a startup-grade frontend platform.</p>
+        <span class="about-stamp">About the devs</span>
+        <h1 class="page-headline">Built by Lakesbim Infotechnology with an obsession for speed, elegance, and serious frontend ambition.</h1>
+        <p class="page-intro">Velox is not being built as an academic side project. It is being shaped as the language, framework, and product foundation for a startup-grade frontend platform and an AI-native design workflow.</p>
+      </div>
+      <div class="about-orbit popup-card popup-card-tilt-soft">
+        <span>Built for</span>
+        <strong>Fast interfaces, explainable systems, and products that need more than generic framework defaults.</strong>
       </div>
     </section>
 
-    <section class="about-grid">
+    <section class="about-grid about-grid-deep">
       <article class="about-card popup-card">
         <p class="runway-chip">Who is behind it</p>
         <h3>Lakesbim Infotechnology</h3>
@@ -16,13 +20,21 @@ component AboutPage() {
       </article>
       <article class="about-card popup-card">
         <p class="runway-chip">What we care about</p>
-        <h3>Performance, elegance, and AI-native ergonomics.</h3>
-        <p>The goal is not to mimic existing frontend stacks. The goal is to build a better one that feels smaller, faster, and easier to teach another model.</p>
+        <h3>Performance, clarity, AI-native ergonomics.</h3>
+        <p>The goal is not to imitate the current frontend giants. The goal is to build something faster, sharper, and easier to reason about.</p>
       </article>
       <article class="about-card popup-card about-card-wide">
-        <p class="runway-chip">Why this matters</p>
-        <h3>The best way to prove the language is to build with it relentlessly.</h3>
-        <p>Velox is being forged through actual product requirements, benchmark pressure, deploy constraints, editor tooling, and the ambition to build a serious startup frontend on top of it.</p>
+        <p class="runway-chip">The operating belief</p>
+        <h3>The fastest way to prove the language is to use it relentlessly.</h3>
+        <p>Velox is being shaped under actual pressure: benchmark expectations, deploy constraints, editor tooling, AI generation requirements, and the ambition to build a real startup frontend on top of it.</p>
+      </article>
+      <article class="about-card popup-card">
+        <p class="runway-chip">Design bar</p>
+        <p>We are not chasing functional frontend alone. We want premium interfaces, stronger motion, and product surfaces that feel authored.</p>
+      </article>
+      <article class="about-card popup-card">
+        <p class="runway-chip">Why that matters</p>
+        <p>If Velox claims to replace mainstream frontend tooling, its own surfaces have to look and behave like they belong in that conversation.</p>
       </article>
     </section>
   }

@@ -4,68 +4,73 @@ component QuickstartPage(data) {
   ~checkScope = data.checkScope
 
   render {
-    <section class="launch-hero">
+    <section class="launch-hero launch-hero-strong">
       <div class="launch-copy">
-        <p class="page-kicker">Quickstart</p>
-        <h1 class="page-headline">The first fifteen minutes should feel electric, not administrative.</h1>
-        <p class="page-intro">Velox is supposed to get you from blank workspace to meaningful output with very little drag. The key verification command is <code>{checkCommand}</code> and it validates {checkScope}.</p>
+        <span class="launch-pill">Get started</span>
+        <h1 class="page-headline">From blank folder to real Velox momentum without the usual setup drag.</h1>
+        <p class="page-intro">The point of quickstart is not to impress you with a command list. It is to get you to the first real win fast enough that you can start building instead of nursing the toolchain.</p>
       </div>
-      <div class="launch-popup popup-card">
-        <span>Goal</span>
-        <strong>Get a real app running fast enough that you want to keep going.</strong>
+      <div class="launch-popup popup-card popup-card-tilt">
+        <span>Primary gate</span>
+        <strong>{checkCommand}</strong>
+        <p>Validates {checkScope} before you build on top of the stack.</p>
       </div>
     </section>
 
-    <section class="launch-grid">
+    <section class="launch-grid launch-grid-deep">
       <div class="timeline-shell">
-        <article class="timeline-row">
+        <article class="timeline-row timeline-row-glow">
           <div class="step-num">1</div>
           <div class="step-content">
             <h4>Clone the workspace</h4>
-            <p>Start in a clean project folder so the compiler, examples, and docs live together from day one.</p>
+            <p>Start in a clean project folder so the compiler, examples, docs, and framework internals live together from day one.</p>
             <div class="step-code">git clone https://github.com/lakesbim/velox.git</div>
           </div>
         </article>
-        <article class="timeline-row">
+        <article class="timeline-row timeline-row-glow">
           <div class="step-num">2</div>
           <div class="step-content">
             <h4>Install dependencies</h4>
-            <p>Velox is built in TypeScript, which keeps the core toolchain easy to inspect and extend.</p>
+            <p>Velox runs on a clear TypeScript toolchain, which means the whole system is inspectable and easy to extend instead of hidden behind black-box binaries.</p>
             <div class="step-code">npm install</div>
           </div>
         </article>
-        <article class="timeline-row">
+        <article class="timeline-row timeline-row-glow">
           <div class="step-num">3</div>
           <div class="step-content">
             <h4>Build the compiler</h4>
-            <p>Compile the source so the CLI and framework pieces are ready to generate deployable output.</p>
+            <p>Compile the source so the CLI, framework runtime, router, and deployment path are all ready to generate output.</p>
             <div class="step-code">npm run build</div>
           </div>
         </article>
-        <article class="timeline-row">
+        <article class="timeline-row timeline-row-glow">
           <div class="step-num">4</div>
           <div class="step-content">
-            <h4>Run the readiness gate</h4>
-            <p>This confirms the current system is in a trustworthy state before you start building on top of it.</p>
+            <h4>Run the readiness pass</h4>
+            <p>This is the trust step. Before you design on top of Velox, confirm that the current stack is healthy enough to carry real product work.</p>
             <div class="step-code">{checkCommand}</div>
           </div>
         </article>
       </div>
 
       <div class="launch-side">
-        <article class="launch-panel">
+        <article class="launch-panel popup-card">
           <p class="runway-chip">Starter flow</p>
-          <h3>What happens next</h3>
+          <h3>What the first session should include</h3>
           <ul class="inline-list">
             {#each steps as item}
               <li>{item}</li>
             {/each}
           </ul>
         </article>
-        <article class="launch-panel popup-card">
+        <article class="launch-panel popup-card popup-card-tilt-soft">
           <p class="runway-chip">Mindset</p>
-          <h3>Build the first real thing early.</h3>
-          <p>The fastest way to improve the language is to let it carry an actual interface, not just isolated syntax examples.</p>
+          <h3>Build a real screen early.</h3>
+          <p>The language improves fastest when it is forced to carry something that matters: a dashboard, a workflow, a marketing page, a product shell.</p>
+        </article>
+        <article class="launch-panel popup-card">
+          <p class="runway-chip">Good first targets</p>
+          <p>Start with a sharp landing page, a small app shell, or a data-rich component. Those three expose layout, state, interaction, and deployment quickly.</p>
         </article>
       </div>
     </section>

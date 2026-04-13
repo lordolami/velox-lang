@@ -1,10 +1,15 @@
 component NotFoundPage() {
   render {
-    <section class="notfound">
-      <div class="notfound-code">404</div>
-      <h2>That route does not exist.</h2>
-      <p>The page you asked for is missing, but the rest of Velox is still right here.</p>
-      <a href="/" class="btn-cta">Back to home</a>
+    <section class="lost-hero">
+      <div class="lost-orbit lost-orbit-a"></div>
+      <div class="lost-orbit lost-orbit-b"></div>
+      <div class="lost-copy">
+        <span class="about-stamp">Route missing</span>
+        <div class="notfound-code">404</div>
+        <h2>The route is gone, but the signal is still here.</h2>
+        <p>This page does not exist. The rest of the Velox system does, and it is still ready to build with.</p>
+        <a href="/" class="btn-cta">Back to home</a>
+      </div>
     </section>
   }
 }

@@ -9,20 +9,20 @@ component BenchmarksPage(data) {
   ~sourceReport = data.sourceReport
 
   render {
-    <section class="bench-hero-premium">
+    <section class="bench-hero-premium bench-hero-deep">
       <div class="bench-hero-copy">
-        <p class="page-kicker">Benchmarks</p>
-        <h1 class="page-headline">Performance only matters when it survives contact with a real app.</h1>
-        <p class="page-intro">These numbers were last updated on {measuredAt} using {sourceReport}. They are here to explain the system, not flatter it.</p>
+        <span class="bench-stamp">Measured system</span>
+        <h1 class="page-headline">Performance should survive contact with routing, content, rendering, and deployment.</h1>
+        <p class="page-intro">These numbers were updated on {measuredAt} using {sourceReport}. The job of this page is to show where Velox is genuinely strong and where the stack is still being pressure-tested.</p>
       </div>
-      <div class="bench-hero-popup popup-card">
+      <div class="bench-hero-popup popup-card popup-card-tilt">
         <span>Method</span>
-        <strong>Measure bundle size, build pace, and app-level rendering, then keep the report close to the product story.</strong>
+        <strong>Bundle size, build pace, app-level rendering, and fast-path workload tests.</strong>
       </div>
     </section>
 
-    <section class="bench-board">
-      <article class="meter-card">
+    <section class="bench-board bench-board-premium">
+      <article class="meter-card meter-card-accent">
         <span class="meter-label">Bundle weight</span>
         <div class="meter-row"><strong>{reactBundleKb}kb</strong><span>React baseline</span></div>
         <div class="meter-row accent-row"><strong>{veloxBundleKb}kb</strong><span>Velox output</span></div>
@@ -35,32 +35,32 @@ component BenchmarksPage(data) {
       <article class="meter-card">
         <span class="meter-label">Compiler speed</span>
         <div class="meter-row accent-row"><strong>{appAvgBuildMs}ms</strong><span>Average app build</span></div>
-        <p>Short feedback loops matter because they shape how quickly teams can refine product work.</p>
+        <p>Fast builds matter because they directly change how quickly a team experiments and ships.</p>
       </article>
       <article class="meter-card">
         <span class="meter-label">Renderer output</span>
         <div class="meter-row accent-row"><strong>{appAvgRendersPerSecond}</strong><span>Average throughput</span></div>
-        <p>App-level measurements matter more than a synthetic victory lap.</p>
+        <p>This is measured against app-level behavior, not just a tiny benchmark loop.</p>
       </article>
     </section>
 
-    <section class="method-river">
+    <section class="method-river method-river-deep">
       <div class="method-copy">
-        <p class="runway-label">How to read this page</p>
-        <h2>The point is not to win a chart. The point is to design a system that stays fast while growing up.</h2>
+        <span class="bench-stamp">Reading the numbers</span>
+        <h2>The point is not to win a screenshot. The point is to keep the system fast while the product gets more serious.</h2>
       </div>
-      <div class="method-grid">
-        <article class="method-card">
+      <div class="method-grid method-grid-premium">
+        <article class="method-card popup-card">
           <h3>Bundle reality</h3>
-          <p>Users feel size first. Every framework claim should start with what gets shipped before the product even becomes interactive.</p>
+          <p>Users feel size before they understand architecture. Smaller output changes first paint, interaction cost, and perceived quality immediately.</p>
         </article>
-        <article class="method-card">
+        <article class="method-card popup-card">
           <h3>Build loop</h3>
-          <p>Fast builds change behavior. Teams iterate more aggressively when the compiler does not interrupt the design flow.</p>
+          <p>Short compile cycles create a different creative rhythm. Designers and engineers iterate more aggressively when the compiler is not fighting them.</p>
         </article>
-        <article class="method-card">
+        <article class="method-card popup-card">
           <h3>App-level render work</h3>
-          <p>The rendering story only matters when components, routing, and data loading are moving together.</p>
+          <p>Rendering benchmarks only matter when pages, layouts, and data loaders are moving together in something that resembles a real product.</p>
         </article>
       </div>
     </section>

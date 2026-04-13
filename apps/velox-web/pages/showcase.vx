@@ -4,57 +4,65 @@ component ShowcasePage(data) {
   ~sourceRoot = data.sourceRoot
 
   render {
-    <section class="showcase-hero-premium">
+    <section class="showcase-hero-premium showcase-hero-deep">
       <div class="showcase-copy">
-        <p class="page-kicker">Showcase</p>
-        <h1 class="page-headline">Reference apps, product patterns, and proof that Velox is meant to be used.</h1>
-        <p class="page-intro">{summary} The current showcase tracks {appCount} apps under {sourceRoot}, but the real destination is the startup frontend we are building next.</p>
+        <span class="showcase-stamp">Reference work</span>
+        <h1 class="page-headline">Apps, patterns, and product surfaces that prove Velox is supposed to be used in anger.</h1>
+        <p class="page-intro">{summary} The current showcase tracks {appCount} apps under {sourceRoot}, but the real destination is a startup frontend that could stand beside any premium modern product site.</p>
       </div>
-      <div class="showcase-popup popup-card">
-        <span>Reference set</span>
-        <strong>Starter apps, data-heavy examples, and the Velox marketing site itself.</strong>
+      <div class="showcase-popup popup-card popup-card-tilt">
+        <span>Current focus</span>
+        <strong>Self-hosted proof, data-rich examples, product-like UI, and deployment realism.</strong>
       </div>
     </section>
 
-    <section class="case-study-grid">
-      <article class="case-card case-card-wide">
+    <section class="case-study-grid case-study-grid-premium">
+      <article class="case-card case-card-wide popup-card">
         <div class="show-preview preview-four"></div>
         <div class="show-info">
-          <p class="runway-chip">Self-hosted proof</p>
+          <p class="runway-chip">Flagship proof</p>
           <h3>Velox website</h3>
-          <p>The language should be confident enough to build its own flagship frontend, not just compile toy examples.</p>
+          <p>The language should be confident enough to build its own high-pressure marketing and docs surface, not just compile toy examples.</p>
         </div>
       </article>
-      <article class="case-card">
+      <article class="case-card popup-card">
         <div class="show-preview preview-one"></div>
         <div class="show-info">
           <p class="runway-chip">Starter</p>
           <h3>Counter</h3>
-          <p>The smallest proof that state, events, and rendering stay readable.</p>
+          <p>Smallest possible proof that state, events, and rendering stay readable under pressure.</p>
         </div>
       </article>
-      <article class="case-card">
+      <article class="case-card popup-card">
         <div class="show-preview preview-two"></div>
         <div class="show-info">
           <p class="runway-chip">Product pattern</p>
           <h3>Todo application</h3>
-          <p>Lists, filtering, persistence, and a calmer component model than the usual boilerplate-heavy route.</p>
+          <p>Lists, filtering, persistence, and interaction flow without the usual boilerplate weight.</p>
         </div>
       </article>
-      <article class="case-card">
+      <article class="case-card popup-card">
         <div class="show-preview preview-three"></div>
         <div class="show-info">
           <p class="runway-chip">Performance</p>
           <h3>Dashboard benchmark</h3>
-          <p>A data-heavy surface used to keep the framework honest in live rendering scenarios.</p>
+          <p>A more demanding surface used to test rendering, filtering, and the feeling of speed in a realistic app shell.</p>
         </div>
       </article>
-      <article class="case-card ghost-card">
+      <article class="case-card popup-card ghost-card">
         <div class="show-preview preview-five"></div>
         <div class="show-info">
-          <p class="runway-chip">Next</p>
+          <p class="runway-chip">Next frontier</p>
           <h3>Your startup frontend</h3>
-          <p>The target is a real company-facing product surface, not just the current demo gallery.</p>
+          <p>The target is not this gallery. The target is a real company product surface with conviction, polish, and serious usability.</p>
+        </div>
+      </article>
+      <article class="case-card popup-card ghost-card">
+        <div class="show-preview preview-six"></div>
+        <div class="show-info">
+          <p class="runway-chip">Open slot</p>
+          <h3>Community flagship</h3>
+          <p>The showcase should eventually include outside work that proves other people can build ambitious things with Velox too.</p>
         </div>
       </article>
     </section>

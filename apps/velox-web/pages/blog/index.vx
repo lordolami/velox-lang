@@ -6,15 +6,19 @@ component BlogIndexPage(data) {
   ~updatedAt = data.updatedAt
 
   render {
-    <section class="editorial-hero">
+    <section class="editorial-hero editorial-hero-deep">
       <div class="editorial-copy">
-        <p class="page-kicker">Journal</p>
-        <h1 class="page-headline">Build notes, roadmap signals, and the story of turning Velox into a real platform.</h1>
-        <p class="page-intro">This section is where the language stops being an abstract pitch and starts sounding like an actual company with a point of view.</p>
+        <span class="editorial-stamp">Journal</span>
+        <h1 class="page-headline">The build log, the founder notes, and the proof that Velox is becoming an actual platform.</h1>
+        <p class="page-intro">This section should read like an ecosystem in motion: technical notes, product choices, benchmark updates, and the hard decisions that shape the language over time.</p>
+      </div>
+      <div class="editorial-orbit popup-card popup-card-tilt-soft">
+        <span>What belongs here</span>
+        <strong>Releases, experiments, milestones, architecture shifts, startup-facing learnings.</strong>
       </div>
     </section>
 
-    <section class="editorial-grid">
+    <section class="editorial-grid editorial-grid-premium">
       <a href="/blog/v1-status" class="editorial-feature popup-card">
         <p class="blog-date">{updatedAt}</p>
         <h2>{statusTitle}</h2>
@@ -29,9 +33,9 @@ component BlogIndexPage(data) {
           <span class="blog-link">Read roadmap</span>
         </a>
         <article class="blog-card popup-card">
-          <p class="runway-chip">What belongs here</p>
-          <h3>Benchmarks, releases, startup milestones, and framework decisions.</h3>
-          <p>The journal should become part technical log, part founder narrative, and part proof that Velox keeps moving forward.</p>
+          <p class="runway-chip">Editorial direction</p>
+          <h3>The journal should sound like a team building something consequential.</h3>
+          <p>It needs more than updates. It needs decisions, tradeoffs, benchmarks, and moments that show how Velox is being shaped for real product pressure.</p>
         </article>
       </div>
     </section>
