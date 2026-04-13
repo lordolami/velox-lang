@@ -18,7 +18,7 @@
     "clean:dist": "node scripts/clean-dist.cjs",
     "build": "npm run clean:dist && tsc -p tsconfig.build.json",
     "dev": "tsx src/cli.ts",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads --maxWorkers=1",
     "test:watch": "vitest",
     "bench:fast": "node benchmarks/run-fast-vs-js.cjs",
     "bench:fast:gate": "node benchmarks/check-fast-regression.cjs",
