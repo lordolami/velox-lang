@@ -19,10 +19,17 @@ export function emitJavaScript(program: ProgramNode): EmitResult {
 
   const imports = program.body.filter((node): node is ImportNode => node.kind === "Import");
   const nonImports = program.body.filter((node): node is Exclude<StatementNode, ImportNode> => node.kind !== "Import");
+  const emittedImports: string[] = [];
   for (const importNode of imports) {
-    lines.push(emitImport(importNode));
+    const emitted = emitImport(importNode);
+    if (emitted) {
+      emittedImports.push(emitted);
+    }
   }
-  if (imports.length > 0) {
+  for (const importLine of emittedImports) {
+    lines.push(importLine);
+  }
+  if (emittedImports.length > 0) {
     lines.push("");
   }
 
@@ -42,7 +49,7 @@ export function emitJavaScript(program: ProgramNode): EmitResult {
 
 function emitStatement(node: StatementNode): string {
   if (node.kind === "Import") {
-    return emitImport(node);
+    return emitImport(node) ?? "";
   }
   if (node.kind === "Component") {
     return emitComponent(node);
@@ -50,7 +57,11 @@ function emitStatement(node: StatementNode): string {
   return emitFastFunction(node);
 }
 
-function emitImport(node: ImportNode): string {
+function emitImport(node: ImportNode): string | null {
+  if (node.sideEffectOnly && hasCssExtension(node.source)) {
+    // CSS side-effect imports are copied by the compiler and linked from HTML shells.
+    return null;
+  }
   const source = rewriteImportSpecifier(node.source);
   if (node.sideEffectOnly) {
     return `import ${JSON.stringify(source)};`;
@@ -86,6 +97,10 @@ function rewriteImportSpecifier(source: string): string {
 
 function hasVxExtension(source: string): boolean {
   return source.toLowerCase().endsWith(".vx");
+}
+
+function hasCssExtension(source: string): boolean {
+  return source.toLowerCase().endsWith(".css");
 }
 
 function hasKnownExtension(spec: string): boolean {

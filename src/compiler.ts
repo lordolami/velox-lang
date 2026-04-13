@@ -148,17 +148,21 @@ export function compileProject(options: CompileProjectOptions): CompileProjectRe
     outputPaths.push(result.outputPath);
   }
 
-  const manifest = collectFileRoutes(inputPath, sourceFiles);
-  if (routerEnabled && (manifest.routes.length > 0 || manifest.notFoundModulePath)) {
-    const routerModulePath = join(outputDir, "__velox_router.js");
-    writeFileSync(routerModulePath, emitRouterRuntimeModule(manifest), "utf8");
-    writeFileSync(join(outputDir, "index.html"), emitRouterHtml(routerTitle), "utf8");
-  }
   const copiedRouteData = copyRouteDataFiles(inputPath, outputDir);
   const copiedImportedCss = copyImportedCssFiles(inputPath, outputDir, parsedByFile);
   let copiedPublic: string[] = [];
   if (copyPublic) {
     copiedPublic = copyPublicDirIfPresent(inputPath, outputDir);
+  }
+  const manifest = collectFileRoutes(inputPath, sourceFiles);
+  if (routerEnabled && (manifest.routes.length > 0 || manifest.notFoundModulePath)) {
+    const routerModulePath = join(outputDir, "__velox_router.js");
+    writeFileSync(routerModulePath, emitRouterRuntimeModule(manifest), "utf8");
+    writeFileSync(
+      join(outputDir, "index.html"),
+      emitRouterHtml(routerTitle, { stylesheets: copiedImportedCss }),
+      "utf8",
+    );
   }
   const allPublicLike = [...copiedPublic, ...copiedImportedCss].sort();
   writeBuildManifest({

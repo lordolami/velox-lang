@@ -504,14 +504,23 @@ export function startVeloxRouter(options = {}) {
 `;
 }
 
-export function emitRouterHtml(title: string): string {
+export function emitRouterHtml(title: string, options?: { stylesheets?: string[] }): string {
+  const stylesheetLinks = (options?.stylesheets ?? [])
+    .map((sheet) => sheet.trim())
+    .filter((sheet) => sheet.length > 0)
+    .map((sheet) => {
+      const href = sheet.startsWith("./") || sheet.startsWith("/") ? sheet : `./${sheet}`;
+      return `    <link rel="stylesheet" href="${escapeHtml(href)}" />`;
+    })
+    .join("\n");
+  const stylesheetBlock = stylesheetLinks ? `${stylesheetLinks}\n` : "";
   return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${escapeHtml(title)}</title>
-    <style>
+${stylesheetBlock}    <style>
       body {
         margin: 0;
         font-family: ui-sans-serif, -apple-system, Segoe UI, sans-serif;

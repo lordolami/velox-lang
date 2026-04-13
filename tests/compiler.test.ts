@@ -658,6 +658,17 @@ component Counter(label: str) {
     expect(runtimePos).toBeGreaterThan(importPos);
   });
 
+  it("omits side-effect CSS imports from emitted JS modules", () => {
+    const source = `
+import "./styles.css";
+component App { render { <p>ok</p> } }
+`;
+    const program = parse(lex(source), source);
+    const output = emitJavaScript(program).code;
+    expect(output).not.toContain('import "./styles.css";');
+    expect(output).toContain("export function App(");
+  });
+
   it("emits default + namespace import form", () => {
     const source = `
 import AppRuntime, * as UI from "./runtime.vx";
@@ -2352,6 +2363,33 @@ component Broken {
       compileProject({ inputPath: srcDir, outputDir: outDir, routerTitle: "My Velox App" });
       const html = readFileSync(join(outDir, "index.html"), "utf8");
       expect(html).toContain("<title>My Velox App</title>");
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("links imported CSS in router HTML instead of JS module imports", () => {
+    const root = mkdtempSync(join(tmpdir(), "velox-router-css-linking-"));
+    const srcDir = join(root, "src");
+    const pagesDir = join(srcDir, "pages");
+    const stylesDir = join(srcDir, "styles");
+    mkdirSync(pagesDir, { recursive: true });
+    mkdirSync(stylesDir, { recursive: true });
+    writeFileSync(join(stylesDir, "global.css"), "body { color: rgb(1, 2, 3); }\n", "utf8");
+    writeFileSync(
+      join(pagesDir, "_layout.vx"),
+      `import "../styles/global.css"\ncomponent Layout(content) { render { <main>{content}</main> } }`,
+      "utf8",
+    );
+    writeFileSync(join(pagesDir, "index.vx"), `component Home { render { <h1>home</h1> } }`, "utf8");
+    const outDir = join(root, "dist");
+    try {
+      compileProject({ inputPath: srcDir, outputDir: outDir });
+      const html = readFileSync(join(outDir, "index.html"), "utf8");
+      const layoutJs = readFileSync(join(outDir, "pages", "_layout.js"), "utf8");
+      expect(html).toContain('<link rel="stylesheet" href="./styles/global.css" />');
+      expect(layoutJs).not.toContain('import "../styles/global.css";');
+      expect(existsSync(join(outDir, "styles", "global.css"))).toBe(true);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

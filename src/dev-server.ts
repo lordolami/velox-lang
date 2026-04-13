@@ -96,6 +96,7 @@ export function startDevServer(options: DevServerOptions): DevServerHandle {
         removedCount += 1;
       }
 
+      const copiedCss = copyCssFiles(sourceRoot, outputDir);
       const manifest = directoryMode ? collectFileRoutes(sourceRoot, sources) : { routes: [], notFoundModulePath: null };
       if (routerEnabled && (manifest.routes.length > 0 || manifest.notFoundModulePath)) {
         writeFileSync(
@@ -103,10 +104,10 @@ export function startDevServer(options: DevServerOptions): DevServerHandle {
           emitRouterRuntimeModule(manifest, { hotReload: true }),
           "utf8",
         );
-        writeFileSync(outputHtmlPath, emitRouterHtml(routerTitle), "utf8");
+        writeFileSync(outputHtmlPath, emitRouterHtml(routerTitle, { stylesheets: copiedCss }), "utf8");
       } else {
         const appModulePath = "./" + builtModules[0];
-        writeFileSync(outputHtmlPath, makeDevHtml(appModulePath), "utf8");
+        writeFileSync(outputHtmlPath, makeDevHtml(appModulePath, copiedCss), "utf8");
       }
       copyRouteDataFiles(sourceRoot, outputDir);
       if (copyPublic) {
@@ -270,14 +271,23 @@ function statSafe(path: string): ReturnType<typeof statSync> | null {
   }
 }
 
-function makeDevHtml(appModulePath: string): string {
+function makeDevHtml(appModulePath: string, stylesheets: string[] = []): string {
+  const stylesheetLinks = stylesheets
+    .map((sheet) => sheet.trim())
+    .filter((sheet) => sheet.length > 0)
+    .map((sheet) => {
+      const href = sheet.startsWith("./") || sheet.startsWith("/") ? sheet : `./${sheet}`;
+      return `    <link rel="stylesheet" href="${escapeHtml(href)}" />`;
+    })
+    .join("\n");
+  const stylesheetBlock = stylesheetLinks ? `${stylesheetLinks}\n` : "";
   return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Velox Dev</title>
-    <style>
+${stylesheetBlock}    <style>
       body {
         margin: 0;
         font-family: ui-monospace, Menlo, Consolas, monospace;
@@ -490,6 +500,51 @@ function listFilesBySuffix(root: string, suffix: string): string[] {
   }
   out.sort();
   return out;
+}
+
+function copyCssFiles(sourceRoot: string, outputDir: string): string[] {
+  const cssFiles = listCssFiles(sourceRoot);
+  const copied: string[] = [];
+  for (const sourceFile of cssFiles) {
+    const rel = relative(sourceRoot, sourceFile);
+    const target = join(outputDir, rel);
+    mkdirSync(dirname(target), { recursive: true });
+    copyFileSync(sourceFile, target);
+    copied.push(normalizeWebPath(rel));
+  }
+  copied.sort();
+  return copied;
+}
+
+function listCssFiles(root: string): string[] {
+  const out: string[] = [];
+  const stack = [root];
+  while (stack.length > 0) {
+    const current = stack.pop()!;
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      const full = join(current, entry.name);
+      if (entry.isDirectory()) {
+        if (shouldIgnoreSourceDir(entry.name)) {
+          continue;
+        }
+        stack.push(full);
+        continue;
+      }
+      if (entry.isFile() && hasCssExtension(full)) {
+        out.push(full);
+      }
+    }
+  }
+  out.sort();
+  return out;
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
 function shouldIgnoreSourceDir(name: string): boolean {
