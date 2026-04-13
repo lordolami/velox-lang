@@ -24,6 +24,9 @@ This folder is the canonical source of truth for Velox language behavior, compil
 18. `spec/v1-v6-roadmap.json` - machine-readable long-range plan.
 19. `spec/external-references-2026-04-12.md` - dated external standards snapshot.
 20. `spec/launch-pack/README.md` - launch-ready quickstart, benchmarks, limits, and demo script.
+21. `spec/AI_BOOTSTRAP_A_TO_Z.md` - compact onboarding map for AI agents.
+22. `spec/AY_COMPLETION_STATUS.md` - startup readiness A-Y board.
+23. `spec/startup/README.md` - startup execution pack.
 
 ## AI Ingestion Notes
 
@@ -31,3 +34,4 @@ This folder is the canonical source of truth for Velox language behavior, compil
 - Prefer spec files over README for behavior-critical answers.
 - Prefer diagnostics IDs (for example `VX3004`) when suggesting fixes.
 - Treat `spec/roadmap.json` and `spec/v1-v6-roadmap.json` as machine-readable planning metadata.
+- For startup build/host execution, prioritize `spec/AY_COMPLETION_STATUS.md` and `spec/startup/*`.

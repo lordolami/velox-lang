@@ -15,6 +15,9 @@ Velox is a frontend language that compiles `.vx` files to JavaScript with a Wasm
 - Recipes: `spec/recipes.md`
 - Troubleshooting: `spec/troubleshooting.md`
 - AI index: `spec/docs-index.json`
+- AI bootstrap A-Z: `spec/AI_BOOTSTRAP_A_TO_Z.md`
+- A-Y completion board: `spec/AY_COMPLETION_STATUS.md`
+- Startup pack: `spec/startup/README.md`
 - Post-launch roadmap: `spec/post-launch-roadmap.md`
 - v2 readiness: `spec/v2-readiness.md`
 - v1 -> v2 migration: `spec/migration-v1-to-v2.md`
@@ -36,6 +39,7 @@ npm run bench:apps:report
 npm run lsp:gate
 npm run check:deterministic
 npm run verify:quickstart
+npm run startup:ready
 npm run release:v1:check
 npm run check:mega60
 npm run build:mega60
@@ -48,6 +52,9 @@ node dist/cli.js dev examples/counter.vx --port 3000 --open
 node dist/cli.js dev examples --port 3000
 node dist/cli.js dev examples/pages --port 3000
 node dist/cli.js deploy examples/pages --target local --name velox-demo
+node dist/cli.js deploy examples/pages --target vercel --name velox-demo
+node dist/cli.js deploy examples/pages --target netlify --name velox-demo
+node dist/cli.js deploy examples/pages --target cloudflare-pages --name velox-demo
 node dist/cli.js deployments examples/pages --json
 node dist/cli.js preview dist-pages --port 4173 --open
 ```
@@ -125,6 +132,7 @@ Velox CLI auto-loads `velox.config.json` from the input directory (or nearest pa
 - `build.copyPublic=false` skips copying `public/` into output.
 - `velox init` scaffolds starter projects: `--template pages` (router-first) or `--template single` (minimal app).
 - `velox deploy` runs build then publishes to a local deployment target (`.velox/deployments/...`).
+- `velox deploy --target vercel|netlify|cloudflare-pages` emits cloud-ready deploy bundles plus `DEPLOY.md`.
 - `velox deployments` lists local deployment history (table or `--json` output).
 - `velox preview` serves built output locally (SPA fallback on by default; use `--no-spa` to disable).
 

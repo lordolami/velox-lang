@@ -7,9 +7,8 @@
     "dist",
     "README.md",
     "CHANGELOG.md",
-    "spec/MASTER_SPEC.md",
-    "spec/v1.md",
-    "spec/quickstart.md"
+    "LICENSE",
+    "spec"
   ],
   "bin": {
     "velox": "dist/cli.js"
@@ -31,6 +30,7 @@
     "lsp:gate": "npm run lsp:smoke && npm run lsp:perf",
     "verify:quickstart": "node scripts/verify-quickstart.cjs",
     "check:deterministic": "node scripts/check-deterministic-output.cjs",
+    "startup:ready": "node scripts/check-startup-readiness.cjs",
     "release:v1:check": "node scripts/release-v1-check.cjs",
     "check:mega60": "tsx src/cli.ts check examples/mega60",
     "build:mega60": "tsx src/cli.ts build examples/mega60 -o dist-mega60",

@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { checkProject, compileProject } from "./compiler";
 import { loadVeloxConfig, resolveConfigPathValue } from "./config";
 import { startDevServer } from "./dev-server";
-import { deployLocalBuild, listLocalDeployments } from "./deploy";
+import { deployCloudBuild, deployLocalBuild, listLocalDeployments } from "./deploy";
 import { startPreviewServer } from "./preview-server";
 import { initProject, type VeloxTemplate } from "./scaffold";
 
@@ -263,7 +263,7 @@ function runDeployCommand(args: string[]): void {
     return;
   }
 
-  let target: "local" | undefined;
+  let target: "local" | "vercel" | "netlify" | "cloudflare-pages" | undefined;
   let appName: string | undefined;
   let buildOut: string | undefined;
   let deployOut: string | undefined;
@@ -272,12 +272,18 @@ function runDeployCommand(args: string[]): void {
     const arg = args[i];
     if (arg === "--target") {
       const value = args[i + 1];
-      if (!value || value !== "local") {
-        console.error('Invalid target. Use --target "local".');
+      if (
+        !value ||
+        (value !== "local" &&
+          value !== "vercel" &&
+          value !== "netlify" &&
+          value !== "cloudflare-pages")
+      ) {
+        console.error('Invalid target. Use --target "local|vercel|netlify|cloudflare-pages".');
         process.exitCode = 1;
         return;
       }
-      target = value;
+      target = value as "local" | "vercel" | "netlify" | "cloudflare-pages";
       i++;
       continue;
     }
@@ -330,9 +336,6 @@ function runDeployCommand(args: string[]): void {
     const configBuildOut = resolveConfigPathValue(projectRoot, config.deploy?.buildOutDir ?? config.build?.outDir);
     const finalBuildOut = buildOut ?? configBuildOut ?? resolve(join(projectRoot, "dist"));
     const finalTarget = target ?? config.deploy?.target ?? "local";
-    if (finalTarget !== "local") {
-      throw new Error(`Unsupported deploy target: ${finalTarget}`);
-    }
 
     const buildResult = compileProject({
       inputPath: inputPath,
@@ -343,16 +346,27 @@ function runDeployCommand(args: string[]): void {
     });
     const finalAppName = appName ?? config.deploy?.appName ?? projectRoot.split(/[/\\]/).at(-1) ?? "velox-app";
     const configDeployOut = resolveConfigPathValue(projectRoot, config.deploy?.outputDir);
-    const deployResult = deployLocalBuild({
-      sourceDir: finalBuildOut,
-      appName: finalAppName,
-      deployRoot: deployOut ?? configDeployOut,
-    });
+    const deployResult =
+      finalTarget === "local"
+        ? deployLocalBuild({
+            sourceDir: finalBuildOut,
+            appName: finalAppName,
+            deployRoot: deployOut ?? configDeployOut,
+          })
+        : deployCloudBuild({
+            sourceDir: finalBuildOut,
+            appName: finalAppName,
+            target: finalTarget,
+            deployRoot: deployOut ?? configDeployOut,
+          });
     console.log(`Built ${buildResult.outputPaths.length} file(s) for deployment`);
-    console.log(`Deployment target: local`);
+    console.log(`Deployment target: ${deployResult.target}`);
     console.log(`Deployment ID: ${deployResult.deploymentId}`);
     console.log(`Deployment output: ${deployResult.outputDir}`);
     console.log(`Deployment manifest: ${deployResult.manifestPath}`);
+    if (deployResult.instructionsPath) {
+      console.log(`Deployment instructions: ${deployResult.instructionsPath}`);
+    }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`Deploy failed: ${message}`);
@@ -469,7 +483,7 @@ Usage:
   velox build <input.vx|dir> [-o output.js|out-dir]
   velox dev <input.vx|dir> [--dir dist-dev] [--port 3000] [--open]
   velox check <input.vx|dir>
-  velox deploy <project-dir> [--target local] [--name app] [--build-out dist] [--deploy-out .velox/deployments]
+  velox deploy <project-dir> [--target local|vercel|netlify|cloudflare-pages] [--name app] [--build-out dist] [--deploy-out .velox/deployments]
   velox preview [dir] [--port 4173] [--open] [--no-spa]
   velox deployments [project-dir] [--json]
 `);

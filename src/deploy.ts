@@ -8,9 +8,11 @@ export interface DeployLocalOptions {
 }
 
 export interface DeployResult {
+  target: "local" | CloudDeployTarget;
   deploymentId: string;
   outputDir: string;
   manifestPath: string;
+  instructionsPath?: string;
 }
 
 export interface LocalDeploymentInfo {
@@ -19,6 +21,15 @@ export interface LocalDeploymentInfo {
   outputDir: string;
   manifestPath: string;
   deployedAt: string;
+}
+
+export type CloudDeployTarget = "vercel" | "netlify" | "cloudflare-pages";
+
+export interface DeployCloudOptions {
+  sourceDir: string;
+  appName: string;
+  target: CloudDeployTarget;
+  deployRoot?: string;
 }
 
 export function deployLocalBuild(options: DeployLocalOptions): DeployResult {
@@ -56,9 +67,69 @@ export function deployLocalBuild(options: DeployLocalOptions): DeployResult {
   upsertDeploymentRegistry(deployRoot, manifestPath);
 
   return {
+    target: "local",
     deploymentId,
     outputDir,
     manifestPath,
+  };
+}
+
+export function deployCloudBuild(options: DeployCloudOptions): DeployResult {
+  const sourceDir = resolve(options.sourceDir);
+  ensureBuildExists(sourceDir);
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+  const appName = sanitizeAppName(options.appName);
+  const deploymentId = `${appName}-${timestamp}`;
+  const deployRoot = resolve(
+    options.deployRoot ?? join(process.cwd(), ".velox", "cloud-deployments", options.target),
+  );
+  const outputDir = join(deployRoot, deploymentId);
+  mkdirSync(outputDir, { recursive: true });
+
+  copyDirectory(sourceDir, outputDir);
+  writeCloudTargetFiles(outputDir, options.target, appName);
+
+  const instructionsPath = join(outputDir, "DEPLOY.md");
+  writeFileSync(
+    instructionsPath,
+    buildCloudInstructions({
+      target: options.target,
+      appName,
+      outputDir,
+    }),
+    "utf8",
+  );
+
+  const manifestPath = join(outputDir, "velox-cloud-deploy.json");
+  writeFileSync(
+    manifestPath,
+    JSON.stringify(
+      {
+        version: 1,
+        deploymentId,
+        target: options.target,
+        appName,
+        sourceDir,
+        outputDir,
+        deployedAt: new Date().toISOString(),
+        instructionsPath,
+        manifest: existsSync(join(sourceDir, "velox-manifest.json"))
+          ? JSON.parse(readFileSync(join(sourceDir, "velox-manifest.json"), "utf8"))
+          : null,
+      },
+      null,
+      2,
+    ) + "\n",
+    "utf8",
+  );
+
+  return {
+    target: options.target,
+    deploymentId,
+    outputDir,
+    manifestPath,
+    instructionsPath,
   };
 }
 
@@ -127,6 +198,118 @@ function copyDirectory(sourceDir: string, targetDir: string): void {
       copyFileSync(source, target);
     }
   }
+}
+
+function writeCloudTargetFiles(outputDir: string, target: CloudDeployTarget, appName: string): void {
+  if (target === "vercel") {
+    writeFileSync(
+      join(outputDir, "vercel.json"),
+      JSON.stringify(
+        {
+          cleanUrls: true,
+          trailingSlash: false,
+          rewrites: [{ source: "/(.*)", destination: "/index.html" }],
+          headers: [
+            {
+              source: "/(.*).wasm",
+              headers: [{ key: "Content-Type", value: "application/wasm" }],
+            },
+          ],
+        },
+        null,
+        2,
+      ) + "\n",
+      "utf8",
+    );
+    return;
+  }
+
+  if (target === "netlify") {
+    writeFileSync(
+      join(outputDir, "netlify.toml"),
+      [
+        "[build]",
+        'publish = "."',
+        "",
+        "[[redirects]]",
+        'from = "/*"',
+        'to = "/index.html"',
+        "status = 200",
+        "",
+        "[[headers]]",
+        'for = "/*.wasm"',
+        "  [headers.values]",
+        '  Content-Type = "application/wasm"',
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+    return;
+  }
+
+  if (target === "cloudflare-pages") {
+    writeFileSync(
+      join(outputDir, "_headers"),
+      ["/*.wasm", "  Content-Type: application/wasm", ""].join("\n"),
+      "utf8",
+    );
+    writeFileSync(join(outputDir, "_redirects"), "/* /index.html 200\n", "utf8");
+    writeFileSync(
+      join(outputDir, "wrangler.toml.example"),
+      [
+        'name = "velox-app"',
+        `project_name = "${appName}"`,
+        'compatibility_date = "2026-04-13"',
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+  }
+}
+
+function buildCloudInstructions(input: {
+  target: CloudDeployTarget;
+  appName: string;
+  outputDir: string;
+}): string {
+  const common = [
+    "# Velox Cloud Deploy Instructions",
+    "",
+    `App: ${input.appName}`,
+    `Target: ${input.target}`,
+    `Output: ${input.outputDir}`,
+    "",
+    "This folder is already build-ready. Run one of the commands below from this folder:",
+    "",
+  ];
+
+  if (input.target === "vercel") {
+    return [
+      ...common,
+      "```bash",
+      "npx vercel --prod",
+      "```",
+      "",
+      "If Vercel asks for framework, choose `Other`.",
+      "",
+    ].join("\n");
+  }
+  if (input.target === "netlify") {
+    return [
+      ...common,
+      "```bash",
+      "npx netlify-cli deploy --prod --dir .",
+      "```",
+      "",
+    ].join("\n");
+  }
+  return [
+    ...common,
+    "```bash",
+    `npx wrangler pages deploy . --project-name ${input.appName}`,
+    "```",
+    "",
+  ].join("\n");
 }
 
 function sanitizeAppName(input: string): string {

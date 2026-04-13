@@ -67,7 +67,6 @@ Build behavior:
 1. `.vx` source cannot import relative `.js` directly (`VX3021`).
 2. Package symbol existence is not type-checked by Velox compiler yet.
 3. Runtime behavior for package imports depends on your bundler/host resolving those packages.
-4. `.vx` state expressions currently support literals, arrays, calls, and operators, not object literals.
 
 ## Proof Examples
 

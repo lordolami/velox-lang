@@ -21,7 +21,7 @@ export interface VeloxConfig {
     };
   };
   deploy?: {
-    target?: "local";
+    target?: "local" | "vercel" | "netlify" | "cloudflare-pages";
     outputDir?: string;
     appName?: string;
     buildInput?: string;

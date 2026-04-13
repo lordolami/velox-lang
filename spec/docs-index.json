@@ -176,6 +176,78 @@
       "title": "Velox Machine Roadmap",
       "path": "spec/roadmap.json",
       "kind": "machine-roadmap"
+    },
+    {
+      "id": "ai-bootstrap-a-to-z",
+      "title": "Velox AI Bootstrap A to Z",
+      "path": "spec/AI_BOOTSTRAP_A_TO_Z.md",
+      "kind": "guide"
+    },
+    {
+      "id": "a-y-completion-status",
+      "title": "Velox A-Y Completion Status",
+      "path": "spec/AY_COMPLETION_STATUS.md",
+      "kind": "execution"
+    },
+    {
+      "id": "startup-pack-readme",
+      "title": "Velox Startup Pack",
+      "path": "spec/startup/README.md",
+      "kind": "execution"
+    },
+    {
+      "id": "startup-ai-build-contract",
+      "title": "Velox AI Build Contract",
+      "path": "spec/startup/ai-build-contract.md",
+      "kind": "guide"
+    },
+    {
+      "id": "startup-env-secrets",
+      "title": "Velox Environment and Secrets",
+      "path": "spec/startup/env-and-secrets.md",
+      "kind": "guide"
+    },
+    {
+      "id": "startup-hosting-cloud",
+      "title": "Velox Hosting and Cloud Targets",
+      "path": "spec/startup/hosting-and-cloud.md",
+      "kind": "guide"
+    },
+    {
+      "id": "startup-monitoring-rollback",
+      "title": "Velox Monitoring and Rollback",
+      "path": "spec/startup/monitoring-and-rollback.md",
+      "kind": "operations"
+    },
+    {
+      "id": "startup-security-baseline",
+      "title": "Velox Security Baseline",
+      "path": "spec/startup/security-baseline.md",
+      "kind": "operations"
+    },
+    {
+      "id": "startup-qa-matrix",
+      "title": "Velox QA Matrix",
+      "path": "spec/startup/qa-matrix.md",
+      "kind": "operations"
+    },
+    {
+      "id": "startup-external-beta",
+      "title": "Velox External Beta Plan",
+      "path": "spec/startup/external-beta.md",
+      "kind": "operations"
+    },
+    {
+      "id": "startup-feedback-loop",
+      "title": "Velox Feedback Loop for AI Generation",
+      "path": "spec/startup/feedback-loop.md",
+      "kind": "operations"
+    },
+    {
+      "id": "startup-ssr-ssg-rfc",
+      "title": "Velox SSR SSG RFC",
+      "path": "spec/startup/ssr-ssg-rfc.md",
+      "kind": "roadmap"
     }
   ]
 }

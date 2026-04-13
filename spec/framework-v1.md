@@ -113,6 +113,15 @@ Deploy target requirements:
 
 Velox-compatible targets include local preview, Vercel-style static deployments, Netlify-style static deployments, and CDN-backed object stores with rewrite rules.
 
+CLI deploy bundle targets:
+
+- `velox deploy --target local`
+- `velox deploy --target vercel`
+- `velox deploy --target netlify`
+- `velox deploy --target cloudflare-pages`
+
+Cloud targets emit provider-ready config files and `DEPLOY.md` instructions in deployment output.
+
 ## 9) Non-Goals for v1
 
 - SSR and streaming server rendering

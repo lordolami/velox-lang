@@ -4,8 +4,8 @@ Date: 2026-04-13
 
 This runbook assumes artifacts are already built:
 
-- npm tarball: `velox-0.18.0.tgz`
-- VS Code extension: `vscode/velox-language/velox-language-0.1.0.vsix`
+- npm tarball: `*.tgz` from `npm pack`
+- VS Code extension: `vscode/velox-language/*.vsix` (current package name is `velox-vx-language`)
 
 ## 1) npm Publish
 
@@ -19,7 +19,7 @@ npm publish
 Verification:
 
 ```bash
-npm view velox version
+npm view @lakesbim/velox version
 ```
 
 ## 2) VS Code Marketplace Publish

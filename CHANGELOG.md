@@ -18,6 +18,17 @@
   - `benchmarks/fast-baseline.json`.
   - `npm run bench:fast:gate`.
 - Broader app-level benchmark set now includes `examples/pages` as `core-pages`.
+- Cloud deploy bundle targets:
+  - `velox deploy --target vercel`
+  - `velox deploy --target netlify`
+  - `velox deploy --target cloudflare-pages`
+  - provider-ready output files plus generated `DEPLOY.md`
+- Startup readiness gate:
+  - `npm run startup:ready`
+  - emits report under `spec/reports/startup-readiness-*.json`
+- Startup operator docs pack under `spec/startup/`.
+- `.env.example` for baseline environment/secrets setup.
+- Cloud deploy test suite (`tests/deploy-cloud.test.ts`).
 
 ### Changed
 

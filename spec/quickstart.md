@@ -69,3 +69,11 @@ velox preview
 velox deploy --name first-release
 velox deployments
 ```
+
+## 7) Prepare Cloud Bundle
+
+```bash
+velox deploy . --target vercel --name first-release
+```
+
+The command prints an output directory containing `DEPLOY.md` with provider-specific final publish command.
