@@ -1,14 +1,10 @@
 import { existsSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { pathToFileURL } from "node:url";
 import { createFileDatabase } from "./db.mjs";
+import { importSourceModule } from "./module-loader.mjs";
 
 const MIGRATIONS_DIR = resolve("app/db/migrations");
-const SEED_FILE = resolve("app/db/seed.js");
-
-async function importFresh(path) {
-  return import(`${pathToFileURL(path).href}?t=${Date.now()}`);
-}
+const SEED_FILES = [resolve("app/db/seed.fs"), resolve("app/db/seed.js"), resolve("app/db/seed.mjs"), resolve("app/db/seed.cjs")];
 
 export async function runDbMigrate() {
   const db = createFileDatabase({ dir: ".fastscript", name: "appdb" });
@@ -16,10 +12,10 @@ export async function runDbMigrate() {
     console.log("db migrate: no app/db/migrations directory");
     return;
   }
-  const files = readdirSync(MIGRATIONS_DIR).filter((f) => /\.(js|mjs|cjs)$/.test(f)).sort();
+  const files = readdirSync(MIGRATIONS_DIR).filter((f) => /\.(fs|js|mjs|cjs)$/.test(f)).sort();
   let count = 0;
   for (const file of files) {
-    const mod = await importFresh(join(MIGRATIONS_DIR, file));
+    const mod = await importSourceModule(join(MIGRATIONS_DIR, file), { platform: "node" });
     const fn = mod.up ?? mod.default;
     if (typeof fn === "function") {
       await fn(db);
@@ -32,14 +28,14 @@ export async function runDbMigrate() {
 
 export async function runDbSeed() {
   const db = createFileDatabase({ dir: ".fastscript", name: "appdb" });
-  if (!existsSync(SEED_FILE)) {
-    console.log("db seed: no app/db/seed.js file");
+  const seedFile = SEED_FILES.find((p) => existsSync(p));
+  if (!seedFile) {
+    console.log("db seed: no app/db/seed file");
     return;
   }
-  const mod = await importFresh(SEED_FILE);
+  const mod = await importSourceModule(seedFile, { platform: "node" });
   const fn = mod.seed ?? mod.default;
-  if (typeof fn !== "function") throw new Error("app/db/seed.js must export seed(db) or default(db)");
+  if (typeof fn !== "function") throw new Error("app/db/seed must export seed(db) or default(db)");
   await fn(db);
   console.log("db seed complete");
 }
-

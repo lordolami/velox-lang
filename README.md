@@ -27,7 +27,14 @@ npm run db:seed
 npm run smoke:dev
 npm run smoke:start
 npm run test:core
+npm run test:language-spec
+npm run test:parser-fuzz
+npm run test:normalizer-stress
+npm run test:determinism
+npm run test:runtime-contract
+npm run bench:language
 npm run bench:report
+npm run qa:gate
 npm run qa:all
 npm run worker
 npm run deploy:node
@@ -48,7 +55,14 @@ npm run pack:check
 - `npm run smoke:dev`: automated SSR/API/auth/middleware smoke test
 - `npm run smoke:start`: production `fastscript start` smoke test
 - `npm run test:core`: middleware/auth/db/migration round-trip tests
+- `npm run test:language-spec`: validates language spec API and strict diagnostics
+- `npm run test:parser-fuzz`: randomized parser/normalizer robustness sweep
+- `npm run test:normalizer-stress`: load/stress test for lenient parser pipeline
+- `npm run test:determinism`: build determinism check
+- `npm run test:runtime-contract`: route/runtime manifest contract test
+- `npm run bench:language`: writes parser/normalizer benchmark baseline
 - `npm run bench:report`: writes benchmark report to `benchmarks/latest-report.md`
+- `npm run qa:gate`: validation + full test suite for merge gating
 - `npm run qa:all`: full quality sweep in one command
 - `npm run worker`: run queue worker runtime
 - `npm run deploy:*`: generate deploy adapters for node/vercel/cloudflare
@@ -61,6 +75,7 @@ npm run pack:check
 - `docs/PLUGIN_API_CONTRACT.md`
 - `docs/INCIDENT_PLAYBOOK.md`
 - `docs/DEPLOY_GUIDE.md`
+- `docs/V1_TRANCHE_1_44.md`
 
 ## Project layout
 

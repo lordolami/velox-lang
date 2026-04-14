@@ -1,7 +1,10 @@
 import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync, copyFileSync } from "node:fs";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import esbuild from "esbuild";
-import { normalizeFastScript } from "./fs-normalize.mjs";
+import {
+  createFastScriptDiagnosticError,
+  normalizeFastScriptWithTelemetry,
+} from "./fs-normalize.mjs";
 
 const APP_DIR = resolve("app");
 const PAGES_DIR = join(APP_DIR, "pages");
@@ -26,8 +29,18 @@ function fsLoaderPlugin() {
       build.onLoad({ filter: /\.fs$/ }, async (args) => {
         const { readFile } = await import("node:fs/promises");
         const raw = await readFile(args.path, "utf8");
+        const result = normalizeFastScriptWithTelemetry(raw, { filename: args.path, strict: false });
+        const hardErrors = result.diagnostics.filter((diag) => diag.severity === "error");
+        if (hardErrors.length > 0) {
+          throw createFastScriptDiagnosticError(hardErrors, { filename: args.path });
+        }
+        if (process.env.FASTSCRIPT_DEBUG_NORMALIZE === "1") {
+          console.log(
+            `normalize ${args.path} lines=${result.stats.lineCount} ms=${result.stats.durationMs.toFixed(2)} rx=${result.stats.reactiveToLet} st=${result.stats.stateToLet} fn=${result.stats.fnToFunction}`,
+          );
+        }
         return {
-          contents: normalizeFastScript(raw),
+          contents: result.code,
           loader: "js",
         };
       });
@@ -219,4 +232,3 @@ window.addEventListener("popstate", () => render(location.pathname, true));
 render(location.pathname, false);
 `;
 }
-

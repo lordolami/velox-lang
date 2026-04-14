@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-04-14T08:09:12.756Z",
+  "target": "Lenient Parser & Normalizer",
+  "sampleRuns": 20,
+  "p50Ms": 7.132,
+  "p95Ms": 19.568,
+  "maxMs": 19.568,
+  "budgetMs": {
+    "p50": 12,
+    "p95": 25,
+    "max": 40
+  }
+}

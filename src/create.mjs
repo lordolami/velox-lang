@@ -97,14 +97,14 @@ body { margin: 0; font: 16px/1.6 ui-sans-serif, system-ui; background: #050505; 
 `,
     },
     {
-      path: join(appRoot, "api", "hello.js"),
+      path: join(appRoot, "api", "hello.fs"),
       content: `export async function GET() {
   return { status: 200, json: { ok: true, message: "Hello from FastScript API" } };
 }
 `,
     },
     {
-      path: join(appRoot, "api", "auth.js"),
+      path: join(appRoot, "api", "auth.fs"),
       content: `export const schemas = {
   POST: { name: "string?" }
 };
@@ -123,7 +123,7 @@ export async function DELETE(ctx) {
 `,
     },
     {
-      path: join(appRoot, "api", "upload.js"),
+      path: join(appRoot, "api", "upload.fs"),
       content: `export const schemas = {
   POST: { key: "string", content: "string" }
 };
@@ -136,7 +136,7 @@ export async function POST(ctx) {
 `,
     },
     {
-      path: join(appRoot, "api", "webhook.js"),
+      path: join(appRoot, "api", "webhook.fs"),
       content: `import { verifyWebhookRequest } from "../../src/webhook.mjs";
 
 export async function POST(ctx) {
@@ -161,7 +161,7 @@ export async function POST(ctx) {
 `,
     },
     {
-      path: join(appRoot, "db", "migrations", "001_init.js"),
+      path: join(appRoot, "db", "migrations", "001_init.fs"),
       content: `export async function up(db) {
   const users = db.collection("users");
   if (!users.get("u_1")) {
@@ -171,7 +171,7 @@ export async function POST(ctx) {
 `,
     },
     {
-      path: join(appRoot, "db", "seed.js"),
+      path: join(appRoot, "db", "seed.fs"),
       content: `export async function seed(db) {
   db.transaction((tx) => {
     tx.collection("posts").set("hello", { id: "hello", title: "First Post", published: true });

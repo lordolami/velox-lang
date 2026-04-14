@@ -1,7 +1,10 @@
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import esbuild from "esbuild";
-import { normalizeFastScript } from "./fs-normalize.mjs";
+import {
+  createFastScriptDiagnosticError,
+  normalizeFastScriptWithTelemetry,
+} from "./fs-normalize.mjs";
 
 const TMP_DIR = resolve(".fastscript-tmp-compat");
 
@@ -12,7 +15,12 @@ function fsLoaderPlugin() {
       build.onLoad({ filter: /\.fs$/ }, async (args) => {
         const { readFile } = await import("node:fs/promises");
         const raw = await readFile(args.path, "utf8");
-        return { contents: normalizeFastScript(raw), loader: "js" };
+        const result = normalizeFastScriptWithTelemetry(raw, { filename: args.path, strict: false });
+        const hardErrors = result.diagnostics.filter((diag) => diag.severity === "error");
+        if (hardErrors.length > 0) {
+          throw createFastScriptDiagnosticError(hardErrors, { filename: args.path });
+        }
+        return { contents: result.code, loader: "js" };
       });
     },
   };
